@@ -8,7 +8,8 @@
 ## مشروع Firebase (مُفعَّل بالفعل — المزامنة تعمل)
 - Project ID: `umrah-companion-adf2026`
 - Firestore: مفعّل (منطقة me-central1) وقواعد الحماية مرفوعة من `firestore.rules`.
-- رابط Firebase Hosting (نسخة مطابقة، متزامنة مع نفس القاعدة): https://umrah-companion-adf2026.web.app
+- رابط Firebase Hosting الرئيسي (مختصر): https://rafiq-tareeq.web.app
+- الرابط القديم لا يزال يعمل أيضًا (نفس المزامنة): https://umrah-companion-adf2026.web.app
 - لوحة التحكم: https://console.firebase.google.com/project/umrah-companion-adf2026/overview
 - `public/firebase-config.js` فيه القيم الحقيقية بالفعل — لا حاجة لتعديله.
 - عند تعديل `public/index.html` أو `firestore.rules` وتشغيل:
