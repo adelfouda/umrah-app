@@ -2,6 +2,17 @@
   "projects": {
     "default": "umrah-companion-adf2026"
   },
-  "targets": {},
+  "targets": {
+    "umrah-companion-adf2026": {
+      "hosting": {
+        "main": [
+          "rafiq-tareeq"
+        ],
+        "legacy": [
+          "umrah-companion-adf2026"
+        ]
+      }
+    }
+  },
   "etags": {}
 }

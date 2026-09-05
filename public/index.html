@@ -700,6 +700,29 @@
   }
   .sync.on{ background:var(--teal-soft); border-color:var(--teal-soft-border); color:var(--teal); }
   .sync.off{ background:var(--attn-soft); border-color:var(--attn-soft-border); color:var(--attn); }
+
+  .install-btn{
+    position:fixed;
+    top:5px;
+    right:10px;
+    z-index:40;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-family:var(--font-ui);
+    font-size:.7rem;
+    font-weight:800;
+    padding:5px 11px;
+    border-radius:999px;
+    border:1px solid var(--gold-soft-border);
+    background:var(--gold-soft);
+    color:var(--gold-strong);
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .install-btn:hover{ background:var(--gold-soft-border); }
+  .install-btn svg{ width:13px; height:13px; flex:none; }
+
   footer{
     text-align:center;
     font-size:.76rem;
@@ -712,6 +735,10 @@
 
 <div class="scallop" aria-hidden="true"></div>
 <span class="sync" id="syncPill" aria-live="polite">جارٍ الاتصال…</span>
+<button class="install-btn" id="installBtn" type="button" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>
+  ثبّت التطبيق
+</button>
 <header class="hero">
   <div class="kicker">دليل مرجعي مختصر</div>
   <h1>رفيق الطريق</h1>
@@ -1832,6 +1859,47 @@
   });
 
   window.UmrahStore.onDuas(renderAll);
+})();
+
+// ---- install as app ----
+(function(){
+  "use strict";
+  var btn = document.getElementById('installBtn');
+  if (!btn) return;
+
+  function isStandalone(){
+    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+  }
+  if (isStandalone()) return; // already installed — never show the button
+
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+  var deferredPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    btn.hidden = false;
+  });
+  window.addEventListener('appinstalled', function(){
+    btn.hidden = true;
+    deferredPrompt = null;
+  });
+
+  // Safari (iOS) never fires beforeinstallprompt and has no programmatic install API,
+  // so the button is shown up front there and just walks the user through the manual steps.
+  if (isIOS) btn.hidden = false;
+
+  btn.addEventListener('click', function(){
+    if (deferredPrompt){
+      var p = deferredPrompt;
+      deferredPrompt = null;
+      p.prompt();
+    } else if (isIOS){
+      window.alert('لتثبيت التطبيق على الآيفون:\n\n1) اضغط زر المشاركة (المربع والسهم) في شريط المتصفح.\n2) اختر «إضافة إلى الشاشة الرئيسية».');
+    } else {
+      window.alert('لتثبيت التطبيق: افتح قائمة المتصفح (⋮ أو ≡) واختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».');
+    }
+  });
 })();
 </script>
 </body></html>
