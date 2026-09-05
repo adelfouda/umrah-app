@@ -1,5 +1,5 @@
-// رفيق العمرة — service worker: app shell offline, network-first for HTML
-const CACHE = 'umrah-companion-v1';
+// رفيق الطريق — service worker: app shell offline, network-first for HTML
+const CACHE = 'umrah-companion-v2';
 const SHELL = ['./', './index.html', './firebase-config.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png'];
 
 self.addEventListener('install', (e) => {

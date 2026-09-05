@@ -1,4 +1,4 @@
-# رفيق العمرة — تطبيق ويب (PWA)
+# رفيق الطريق — تطبيق ويب (PWA)
 
 ## الكود والنشر على GitHub
 - المستودع: https://github.com/adelfouda/umrah-app
