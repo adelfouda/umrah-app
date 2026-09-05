@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // الأدعية المضافة: قراءة وكتابة لأي مستخدم عنده الرابط، مع تحقق من شكل البيانات
+    match /duas/{id} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['sectionId', 'text', 'addedAt'])
+                    && request.resource.data.text is string
+                    && request.resource.data.text.size() > 0
+                    && request.resource.data.text.size() <= 4000
+                    && request.resource.data.sectionId is string
+                    && request.resource.data.sectionId.size() <= 40
+                    && request.resource.data.addedAt is number;
+      allow delete: if true;
+      allow update: if false;
+    }
+    // العدّادات المشتركة
+    match /shared/counters {
+      allow read: if true;
+      allow write: if request.resource.data.keys().hasOnly(['tawaf', 'sai', 'updatedAt'])
+                   && (!('tawaf' in request.resource.data) || (request.resource.data.tawaf is int && request.resource.data.tawaf >= 0 && request.resource.data.tawaf <= 7))
+                   && (!('sai' in request.resource.data) || (request.resource.data.sai is int && request.resource.data.sai >= 0 && request.resource.data.sai <= 7));
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

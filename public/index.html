@@ -1,0 +1,1837 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>رفيق العمرة</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#9c7a2c">
+<meta name="description" content="أدعية العمرة والطواف والسعي وزيارة المسجد النبوي — مع عدّادات الأشواط وإضافات مشتركة.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="رفيق العمرة">
+<style>:root{color-scheme:light dark}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style>
+</head>
+<body>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700;800&display=swap');
+
+  :root{
+    --ground:#f6f1e4;
+    --surface:#fffdf8;
+    --surface-2:#efe6cf;
+    --border:#ddd0ac;
+    --ink:#1e2430;
+    --ink-soft:#6d6656;
+    --ink-faint:#9a9280;
+    --gold:#9c7a2c;
+    --gold-strong:#7c5f1f;
+    --gold-soft:#efe0b3;
+    --gold-soft-border:#dcc789;
+    --teal:#2c6a5c;
+    --teal-soft:#dcebe6;
+    --teal-soft-border:#b7d5cc;
+    --attn:#a1521f;
+    --attn-soft:#f3ddc4;
+    --attn-soft-border:#e3bd8e;
+    --shadow: 0 1px 2px rgba(30,20,5,.06), 0 8px 24px -12px rgba(30,20,5,.18);
+    --font-display:'Amiri','Traditional Arabic',serif;
+    --font-ui:'Tajawal','Segoe UI',system-ui,sans-serif;
+    --scale:1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#10141a;
+      --surface:#181e26;
+      --surface-2:#1f2733;
+      --border:#2c3543;
+      --ink:#efe8d6;
+      --ink-soft:#b6ac93;
+      --ink-faint:#847c68;
+      --gold:#d3ab55;
+      --gold-strong:#e8c377;
+      --gold-soft:#3a2e17;
+      --gold-soft-border:#5a481f;
+      --teal:#69b3a3;
+      --teal-soft:#183330;
+      --teal-soft-border:#2c4f48;
+      --attn:#e0975a;
+      --attn-soft:#3a2515;
+      --attn-soft-border:#5c3a1e;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#10141a;
+    --surface:#181e26;
+    --surface-2:#1f2733;
+    --border:#2c3543;
+    --ink:#efe8d6;
+    --ink-soft:#b6ac93;
+    --ink-faint:#847c68;
+    --gold:#d3ab55;
+    --gold-strong:#e8c377;
+    --gold-soft:#3a2e17;
+    --gold-soft-border:#5a481f;
+    --teal:#69b3a3;
+    --teal-soft:#183330;
+    --teal-soft-border:#2c4f48;
+    --attn:#e0975a;
+    --attn-soft:#3a2515;
+    --attn-soft-border:#5c3a1e;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--font-ui);
+    direction:rtl;
+    line-height:1.6;
+  }
+  img{max-width:100%;}
+
+  .scallop{
+    height:16px;
+    background-image:radial-gradient(circle at 12px -5px, transparent 13px, var(--gold-soft-border) 14px);
+    background-size:26px 22px;
+    opacity:.7;
+  }
+
+  header.hero{
+    padding:34px 20px 22px;
+    text-align:center;
+    background:
+      radial-gradient(120% 140% at 50% -20%, var(--gold-soft) 0%, transparent 60%),
+      var(--surface);
+    border-bottom:1px solid var(--border);
+  }
+  .kicker{
+    font-family:var(--font-ui);
+    font-size:.72rem;
+    letter-spacing:.14em;
+    color:var(--gold-strong);
+    font-weight:700;
+    text-transform:uppercase;
+  }
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(1.9rem, 6vw, 2.7rem);
+    margin:.25em 0 .15em;
+    color:var(--ink);
+    text-wrap:balance;
+  }
+  .subtitle{
+    font-size:.98rem;
+    color:var(--ink-soft);
+    max-width:34em;
+    margin:0 auto;
+    text-wrap:balance;
+  }
+
+  nav.tabs{
+    position:sticky;
+    top:0;
+    z-index:20;
+    display:flex;
+    gap:6px;
+    padding:8px 10px;
+    background:color-mix(in srgb, var(--ground) 88%, transparent);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  nav.tabs::-webkit-scrollbar{display:none;}
+  nav.tabs button{
+    flex:1 0 auto;
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    justify-content:center;
+    font-family:var(--font-ui);
+    font-weight:700;
+    font-size:.86rem;
+    color:var(--ink-soft);
+    background:transparent;
+    border:1px solid transparent;
+    border-radius:999px;
+    padding:9px 14px;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  nav.tabs button:hover{ background:var(--surface-2); }
+  nav.tabs button[aria-selected="true"]{
+    background:var(--ink);
+    color:var(--ground);
+    border-color:var(--ink);
+  }
+  nav.tabs button:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+
+  main{
+    max-width:640px;
+    margin:0 auto;
+    padding:18px 16px 60px;
+  }
+  section.panel{ display:none; }
+  section.panel.active{ display:block; animation:fade .25s ease; }
+  @media (prefers-reduced-motion: reduce){
+    section.panel.active{ animation:none; }
+  }
+  @keyframes fade{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;} }
+
+  .section-lede{
+    font-size:.92rem;
+    color:var(--ink-soft);
+    margin:4px 0 18px;
+    padding-inline-start:12px;
+    border-inline-start:3px solid var(--gold-soft-border);
+  }
+
+  /* ---- counter widget ---- */
+  .counter{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px 18px;
+    box-shadow:var(--shadow);
+    margin-bottom:22px;
+  }
+  .counter-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .counter-title{ font-weight:800; font-size:.95rem; }
+  .counter-phase{
+    font-family:var(--font-ui);
+    font-size:.82rem;
+    color:var(--teal);
+    font-weight:700;
+    background:var(--teal-soft);
+    border:1px solid var(--teal-soft-border);
+    padding:3px 10px;
+    border-radius:999px;
+  }
+  .counter-body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+  }
+  .counter-btn{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--ink);
+    font-size:1.3rem;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
+    transition:transform .1s ease, background .15s ease;
+  }
+  .counter-btn:hover{ background:var(--gold-soft); }
+  .counter-btn:active{ transform:scale(.92); }
+  .counter-btn:disabled{ opacity:.35; cursor:not-allowed; transform:none; background:var(--surface-2); }
+  .counter-num{
+    font-family:var(--font-display);
+    font-size:3.2rem;
+    font-weight:700;
+    min-width:1.6em;
+    text-align:center;
+    font-variant-numeric:tabular-nums;
+    color:var(--gold-strong);
+  }
+  .counter-of{
+    font-size:.8rem;
+    color:var(--ink-faint);
+    display:block;
+    margin-top:-6px;
+  }
+  .dots{
+    display:flex;
+    gap:7px;
+    justify-content:center;
+    margin-top:14px;
+    flex-wrap:wrap;
+  }
+  .dots span{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .dots span.done{ background:var(--gold); border-color:var(--gold); }
+  .counter-reset{
+    display:block;
+    margin:14px auto 0;
+    background:none;
+    border:none;
+    color:var(--ink-faint);
+    font-family:var(--font-ui);
+    font-size:.8rem;
+    text-decoration:underline;
+    cursor:pointer;
+  }
+  .counter-reset:hover{ color:var(--attn); }
+
+  /* ---- dua cards ---- */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-inline-start:4px solid var(--gold);
+    border-radius:14px;
+    padding:18px 18px 16px;
+    margin-bottom:16px;
+    box-shadow:var(--shadow);
+  }
+  .card.attn{ border-inline-start-color:var(--attn); }
+  .card.quran{ border-inline-start-color:var(--teal); }
+
+  .card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .card-title{
+    font-weight:800;
+    font-size:.98rem;
+    color:var(--ink);
+  }
+  .badge{
+    flex:none;
+    font-family:var(--font-ui);
+    font-size:.72rem;
+    font-weight:700;
+    padding:3px 10px;
+    border-radius:999px;
+    white-space:nowrap;
+    border:1px solid var(--gold-soft-border);
+    background:var(--gold-soft);
+    color:var(--gold-strong);
+  }
+  .badge.quran{ background:var(--teal-soft); border-color:var(--teal-soft-border); color:var(--teal); }
+  .badge.attn{ background:var(--attn-soft); border-color:var(--attn-soft-border); color:var(--attn); }
+  .badge.mawquf{ background:var(--surface-2); border-color:var(--border); color:var(--ink-soft); }
+
+  .dua-text{
+    font-family:var(--font-display);
+    font-size:calc(1.42rem * var(--scale));
+    line-height:2.05;
+    color:var(--ink);
+    margin:6px 0 10px;
+    text-align:center;
+  }
+  .card.attn .dua-text{ font-family:var(--font-ui); font-size:calc(.98rem * var(--scale)); text-align:right; line-height:1.85; color:var(--ink-soft); }
+
+  .card-note{
+    font-size:.84rem;
+    color:var(--ink-soft);
+    border-top:1px dashed var(--border);
+    padding-top:10px;
+    margin-top:4px;
+  }
+  .card-note b{ color:var(--ink); }
+
+  .etiquette{
+    background:var(--teal-soft);
+    border:1px solid var(--teal-soft-border);
+    border-radius:14px;
+    padding:16px 18px;
+    margin-bottom:18px;
+    font-size:.9rem;
+    color:var(--ink);
+  }
+  .etiquette b{ display:block; margin-bottom:6px; color:var(--teal); font-size:.82rem; letter-spacing:.02em; }
+  .etiquette ul{ margin:0; padding-inline-start:1.3em; }
+  .etiquette li{ margin-bottom:4px; }
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:20px 0 6px;
+    padding-top:16px;
+    border-top:1px solid var(--border);
+  }
+  .legend span{
+    font-size:.72rem;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    color:var(--ink-faint);
+  }
+  .legend i{ width:9px; height:9px; border-radius:50%; display:inline-block; }
+
+  /* ---- in-tab organization: subnav + subsection headings ---- */
+  .subnav{
+    position:sticky;
+    top:53px;
+    z-index:15;
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    background:color-mix(in srgb, var(--ground) 96%, transparent);
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+    margin:0 -16px 20px;
+    padding:8px 16px 10px;
+    border-bottom:1px solid var(--border);
+    box-shadow:0 6px 14px -12px rgba(30,20,5,.35);
+  }
+  .subnav::-webkit-scrollbar{ display:none; }
+  .subnav a{
+    flex:none;
+    font-family:var(--font-ui);
+    font-size:.78rem;
+    font-weight:700;
+    color:var(--teal);
+    background:var(--teal-soft);
+    border:1px solid var(--teal-soft-border);
+    padding:6px 12px;
+    border-radius:999px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .subnav a:hover{ background:var(--gold-soft); color:var(--gold-strong); border-color:var(--gold-soft-border); }
+  .subnav a.active{
+    background:var(--ink);
+    color:var(--ground);
+    border-color:var(--ink);
+  }
+
+  .subhead{
+    scroll-margin-top:106px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:30px 0 12px;
+  }
+  .subhead:first-of-type{ margin-top:4px; }
+  .subhead .n{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.05rem;
+    color:var(--gold-strong);
+    background:var(--gold-soft);
+    border:1px solid var(--gold-soft-border);
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:none;
+  }
+  .subhead h2{
+    font-family:var(--font-ui);
+    font-size:1rem;
+    font-weight:800;
+    margin:0;
+    color:var(--ink);
+  }
+  .subhead .line{
+    flex:1;
+    height:1px;
+    background:var(--border);
+  }
+
+  .source-note{
+    font-size:.82rem;
+    color:var(--ink-soft);
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px 14px;
+    margin-bottom:18px;
+  }
+  .source-note b{ color:var(--ink); }
+
+  .group-label{
+    font-family:var(--font-ui);
+    font-size:.78rem;
+    font-weight:800;
+    color:var(--teal);
+    margin:22px 2px 10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .group-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--teal-soft-border);
+  }
+
+  .card.compact{
+    padding:13px 15px 11px;
+  }
+  .card.compact .dua-text{
+    font-size:calc(1.12rem * var(--scale));
+    line-height:1.9;
+    margin:0 0 6px;
+  }
+  .card.compact .cite{
+    display:block;
+    font-size:.74rem;
+    color:var(--ink-faint);
+    text-align:center;
+    border-top:1px dashed var(--border);
+    padding-top:7px;
+  }
+
+  .fontctl{
+    position:fixed;
+    left:12px;
+    bottom:12px;
+    display:flex;
+    gap:4px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:4px;
+    z-index:30;
+  }
+  .fontctl button{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    border:none;
+    background:transparent;
+    color:var(--ink-soft);
+    font-family:var(--font-ui);
+    font-weight:800;
+    cursor:pointer;
+  }
+  .fontctl button:hover{ background:var(--surface-2); color:var(--ink); }
+
+  /* ---- manual "add a dua" feature ---- */
+  .add-fab{
+    position:fixed;
+    right:14px;
+    bottom:14px;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    border:none;
+    background:var(--gold-strong);
+    color:var(--ground);
+    font-size:1.7rem;
+    font-weight:700;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    z-index:30;
+  }
+  .add-fab:active{ transform:scale(.94); }
+
+  .add-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(20,15,5,.42);
+    z-index:38;
+    opacity:0;
+    transition:opacity .22s ease;
+  }
+  .add-overlay.open{ opacity:1; }
+
+  .add-drawer{
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    width:min(90vw, 400px);
+    background:var(--surface);
+    border-inline-start:1px solid var(--border);
+    box-shadow:-8px 0 28px -10px rgba(20,15,5,.35);
+    z-index:39;
+    display:flex;
+    flex-direction:column;
+    padding:18px 18px calc(18px + env(safe-area-inset-bottom));
+    transform:translateX(100%);
+    transition:transform .28s ease;
+    overflow-y:auto;
+  }
+  .add-drawer.open{ transform:translateX(0); }
+  @media (prefers-reduced-motion: reduce){
+    .add-drawer{ transition:none; }
+    .add-overlay{ transition:none; }
+  }
+
+  .add-drawer-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:16px;
+  }
+  .add-drawer-head h2{
+    font-family:var(--font-display);
+    font-size:1.3rem;
+    font-weight:700;
+    margin:0;
+    color:var(--ink);
+  }
+  .add-close{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    border:none;
+    background:var(--surface-2);
+    color:var(--ink-soft);
+    font-size:1.2rem;
+    line-height:1;
+    cursor:pointer;
+  }
+  .add-close:hover{ background:var(--gold-soft); color:var(--gold-strong); }
+
+  .add-label{
+    display:block;
+    font-family:var(--font-ui);
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--ink-soft);
+    margin:14px 0 6px;
+  }
+  .add-select, .add-textarea{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--font-ui);
+    font-size:.92rem;
+    padding:10px 12px;
+    box-sizing:border-box;
+  }
+  .add-textarea{
+    font-family:var(--font-display);
+    font-size:1.1rem;
+    line-height:1.9;
+    resize:vertical;
+    min-height:130px;
+  }
+  .add-select:focus, .add-textarea:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+
+  .add-submit{
+    margin-top:18px;
+    width:100%;
+    border:none;
+    border-radius:14px;
+    background:var(--gold-strong);
+    color:var(--ground);
+    font-family:var(--font-ui);
+    font-weight:800;
+    font-size:.96rem;
+    padding:13px;
+    cursor:pointer;
+  }
+  .add-submit:hover{ opacity:.92; }
+  .add-hint{
+    font-size:.78rem;
+    color:var(--ink-faint);
+    margin-top:8px;
+  }
+
+  .card-del{
+    display:block;
+    margin:10px auto 0;
+    border:none;
+    background:none;
+    color:var(--attn);
+    font-family:var(--font-ui);
+    font-size:.78rem;
+    font-weight:700;
+    cursor:pointer;
+    padding:4px 8px;
+  }
+  .card-del:hover{ text-decoration:underline; }
+
+  .card.just-added{ animation:cardFlash 1.8s ease; }
+  @keyframes cardFlash{
+    0%{ background:var(--gold-soft); border-color:var(--gold-soft-border); }
+    100%{ background:var(--surface); border-color:var(--border); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .card.just-added{ animation:none; }
+  }
+
+  .sync{
+    position:fixed;
+    top:6px;
+    left:10px;
+    z-index:40;
+    font-family:var(--font-ui);
+    font-size:.68rem;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:999px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    color:var(--ink-faint);
+    pointer-events:none;
+  }
+  .sync.on{ background:var(--teal-soft); border-color:var(--teal-soft-border); color:var(--teal); }
+  .sync.off{ background:var(--attn-soft); border-color:var(--attn-soft-border); color:var(--attn); }
+  footer{
+    text-align:center;
+    font-size:.76rem;
+    color:var(--ink-faint);
+    padding:10px 20px 40px;
+    max-width:520px;
+    margin:0 auto;
+  }
+</style>
+
+<div class="scallop" aria-hidden="true"></div>
+<span class="sync" id="syncPill" aria-live="polite">جارٍ الاتصال…</span>
+<header class="hero">
+  <div class="kicker">دليل مرجعي مختصر</div>
+  <h1>رفيق العمرة</h1>
+  <p class="subtitle">أدعية العمرة والطواف والسعي، وزيارة المسجد النبوي، وأدعية عامة للتضرّع — موثّقة من صحيح البخاري ومسلم وسنن أبي داود والقرآن الكريم، مع بيان درجة كل نص.</p>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="أقسام الدعاء">
+  <button role="tab" aria-selected="true" aria-controls="panel-ihram" id="tab-ihram" data-target="panel-ihram">الإحرام</button>
+  <button role="tab" aria-selected="false" aria-controls="panel-tawaf" id="tab-tawaf" data-target="panel-tawaf">الطواف</button>
+  <button role="tab" aria-selected="false" aria-controls="panel-sai" id="tab-sai" data-target="panel-sai">السعي</button>
+  <button role="tab" aria-selected="false" aria-controls="panel-nabawi" id="tab-nabawi" data-target="panel-nabawi">المسجد النبوي</button>
+  <button role="tab" aria-selected="false" aria-controls="panel-jamiah" id="tab-jamiah" data-target="panel-jamiah">أدعية عامة</button>
+</nav>
+
+<main>
+
+  <!-- ================= الإحرام / عام ================= -->
+  <section class="panel active" id="panel-ihram" role="tabpanel" aria-labelledby="tab-ihram">
+    <p class="section-lede">من الإحرام إلى دخول المسجد الحرام، حتى بدء الطواف.</p>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">التلبية</span>
+        <span class="badge">متفق عليه</span>
+      </div>
+      <p class="dua-text">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ</p>
+      <p class="card-note"><b>مأثورة عن ابن عمر رضي الله عنهما</b> — تُقال من عقد نية الإحرام، ويُكثَر منها في الطريق حتى بدء الطواف. يجهر بها الرجال، وتُسِرّ بها النساء.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">دخول المسجد الحرام</span>
+        <span class="badge mawquf">سنّة عامة</span>
+      </div>
+      <p class="dua-text">بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ، اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ</p>
+      <p class="card-note">هذا هو الدعاء المأثور المعتاد عند دخول <b>أي</b> مسجد، ويُستفتح به دخول المسجد الحرام كذلك، إذ لا يُشرع له لفظ خاص مختلف. ويُستحب تقديم الرجل اليمنى عند الدخول.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">زيادة مستحبة عند دخول أي مسجد</span>
+        <span class="badge">أبو داود ٤٦٦</span>
+      </div>
+      <p class="dua-text">أَعُوذُ بِاللَّهِ الْعَظِيمِ، وَبِوَجْهِهِ الْكَرِيمِ، وَسُلْطَانِهِ الْقَدِيمِ، مِنَ الشَّيْطَانِ الرَّجِيمِ</p>
+      <p class="card-note">عن عبد الله بن عمرو بن العاص رضي الله عنهما، وتمام الحديث أن الشيطان يقول عندئذٍ: «حُفِظَ مِنِّي سَائِرَ الْيَوْمِ». صحّحه الألباني، وحسّنه ابن حجر (حسن غريب) لضعف راويين في سنده.</p>
+    </article>
+
+    <article class="card attn">
+      <div class="card-head">
+        <span class="card-title">عند أول رؤية للكعبة</span>
+        <span class="badge attn">تنبيه: لا نص ثابت</span>
+      </div>
+      <p class="dua-text">لم يصحّ عن النبي ﷺ دعاء خاص يُقال عند أول نظرة إلى الكعبة؛ الروايات الواردة في ذلك ضعيفة جدًا أو موضوعة. مع ذلك، فهذا موطن ووقت تُرجى فيه إجابة الدعاء، فادعُ الله بما شئت من خيري الدنيا والآخرة بقلب حاضر، دون أن تنسب لفظًا معينًا للنبي ﷺ.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">سيّد الاستغفار</span>
+        <span class="badge">صحيح — البخاري ٦٣٠٦</span>
+      </div>
+      <p class="dua-text">اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي، فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ</p>
+      <p class="card-note">عن شداد بن أوس رضي الله عنه. يُستحب الإكثار منه في كل وقت، وخاصة في مواطن العمرة المباركة.</p>
+    </article>
+  </section>
+
+  <!-- ================= الطواف ================= -->
+  <section class="panel" id="panel-tawaf" role="tabpanel" aria-labelledby="tab-tawaf">
+    <p class="section-lede">سبعة أشواط حول الكعبة، تبدأ من الحجر الأسود وتنتهي به.</p>
+
+    <div class="counter" id="counter-tawaf">
+      <div class="counter-head">
+        <span class="counter-title">عدّاد أشواط الطواف</span>
+        <span class="counter-phase" id="tawaf-phase">لم يبدأ بعد</span>
+      </div>
+      <div class="counter-body">
+        <button class="counter-btn" data-action="dec" aria-label="إنقاص شوط">−</button>
+        <div>
+          <div class="counter-num" id="tawaf-num" aria-live="polite">٠</div>
+          <span class="counter-of">من أصل ٧ أشواط</span>
+        </div>
+        <button class="counter-btn" data-action="inc" aria-label="إضافة شوط">+</button>
+      </div>
+      <div class="dots" id="tawaf-dots"></div>
+      <button class="counter-reset" data-action="reset">إعادة تعيين العدّاد</button>
+    </div>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">بدء كل شوط — عند الحجر الأسود</span>
+        <span class="badge mawquf">صحيح موقوفًا (ابن عمر)</span>
+      </div>
+      <p class="dua-text">بِسْمِ اللَّهِ، وَاللَّهُ أَكْبَرُ</p>
+      <p class="card-note">تُقال عند استلام الحجر الأسود أو تقبيله في مستهلّ كل شوط. هذا من فعل ابن عمر رضي الله عنهما بسند صحيح <b>موقوف عليه</b>، لا مرفوعًا إلى النبي ﷺ.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">عند تعذّر الاستلام</span>
+        <span class="badge">صحيح — البخاري ١٦١٣</span>
+      </div>
+      <p class="dua-text">اللَّهُ أَكْبَرُ</p>
+      <p class="card-note">إن لم يتيسّر استلام الحجر لزحام ونحوه، تكفي الإشارة إليه باليد كلما حاذيته مع التكبير، كما كان يفعل النبي ﷺ.</p>
+    </article>
+
+    <article class="card quran">
+      <div class="card-head">
+        <span class="card-title">بين الركن اليماني والحجر الأسود</span>
+        <span class="badge quran">صحيح مرفوع — أبو داود ١٨٩٢</span>
+      </div>
+      <p class="dua-text">﴿رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ﴾</p>
+      <p class="card-note">عن عبد الله بن السائب رضي الله عنه. تُكرَّر في هذا الموضع بعينه في كل شوط من الأشواط السبعة.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">فيما عدا ذلك من الطواف</span>
+        <span class="badge mawquf">لا تخصيص</span>
+      </div>
+      <p class="dua-text" style="font-family:var(--font-ui); font-size:calc(.95rem * var(--scale)); text-align:right; line-height:1.85;">لم يثبت ذكر معيّن لباقي مسافة الطواف؛ فادعُ الله بما تيسّر من أمور دينك ودنياك وآخرتك، أو اقرأ القرآن، أو أكثر من ذكر الله المطلق كالتهليل والتسبيح والاستغفار.</p>
+    </article>
+  </section>
+
+  <!-- ================= السعي ================= -->
+  <section class="panel" id="panel-sai" role="tabpanel" aria-labelledby="tab-sai">
+    <p class="section-lede">سبعة أشواط بين الصفا والمروة، تبدأ بالصفا وتنتهي بالمروة.</p>
+
+    <div class="counter" id="counter-sai">
+      <div class="counter-head">
+        <span class="counter-title">عدّاد أشواط السعي</span>
+        <span class="counter-phase" id="sai-phase">لم يبدأ بعد</span>
+      </div>
+      <div class="counter-body">
+        <button class="counter-btn" data-action="dec" aria-label="إنقاص شوط">−</button>
+        <div>
+          <div class="counter-num" id="sai-num" aria-live="polite">٠</div>
+          <span class="counter-of">من أصل ٧ أشواط</span>
+        </div>
+        <button class="counter-btn" data-action="inc" aria-label="إضافة شوط">+</button>
+      </div>
+      <div class="dots" id="sai-dots"></div>
+      <button class="counter-reset" data-action="reset">إعادة تعيين العدّاد</button>
+    </div>
+
+    <article class="card quran">
+      <div class="card-head">
+        <span class="card-title">عند الاقتراب من الصفا أول مرة</span>
+        <span class="badge quran">قرآن كريم — البقرة ١٥٨</span>
+      </div>
+      <p class="dua-text">﴿إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ ۖ فَمَنْ حَجَّ الْبَيْتَ أَوِ اعْتَمَرَ فَلَا جُنَاحَ عَلَيْهِ أَنْ يَطَّوَّفَ بِهِمَا ۚ وَمَنْ تَطَوَّعَ خَيْرًا فَإِنَّ اللَّهَ شَاكِرٌ عَلِيمٌ﴾</p>
+      <p class="card-note">ثم يقول: <b>«أَبْدَأُ بِمَا بَدَأَ اللَّهُ بِهِ»</b>، ويبدأ السعي من الصفا.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">الوقوف على الصفا والمروة</span>
+        <span class="badge">صحيح — مسلم ١٢١٨</span>
+      </div>
+      <p class="dua-text">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزَابَ وَحْدَهُ</p>
+      <p class="card-note">من حديث جابر رضي الله عنه الطويل في صفة حجة النبي ﷺ. يُستقبَل القبلة، ويُقال هذا الذكر <b>ثلاث مرات</b> على الصفا، ويُدعى بين كل مرة وأخرى بما شاء الحاجّ. ثم يُفعل على المروة تمامًا كما فُعل على الصفا، في كل شوط من الأشواط السبعة.</p>
+    </article>
+  </section>
+
+  <!-- ================= المسجد النبوي ================= -->
+  <section class="panel" id="panel-nabawi" role="tabpanel" aria-labelledby="tab-nabawi">
+    <p class="section-lede">لمن يزور المدينة المنورة قبل العمرة أو بعدها. الزيارة سنّة مستقلة، وليست من مناسك العمرة.</p>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">دخول المسجد النبوي</span>
+        <span class="badge mawquf">سنّة عامة</span>
+      </div>
+      <p class="dua-text">بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ، اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ</p>
+      <p class="card-note">لم يثبت دعاء خاص بدخول المسجد النبوي؛ هو نفس الدعاء المأثور لدخول أي مسجد (صحيح مسلم ٧١٣).</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">فضل الصلاة في المسجد النبوي</span>
+        <span class="badge">صحيح — البخاري ١١٩٠</span>
+      </div>
+      <p class="dua-text">صَلَاةٌ فِي مَسْجِدِي هَذَا خَيْرٌ مِنْ أَلْفِ صَلَاةٍ فِيمَا سِوَاهُ إِلَّا الْمَسْجِدَ الْحَرَامَ</p>
+      <p class="card-note">عن أبي هريرة رضي الله عنه.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">الروضة الشريفة</span>
+        <span class="badge">متفق عليه — البخاري ١١٩٦</span>
+      </div>
+      <p class="dua-text">مَا بَيْنَ بَيْتِي وَمِنْبَرِي رَوْضَةٌ مِنْ رِيَاضِ الْجَنَّةِ</p>
+      <p class="card-note">اللفظ الثابت في الصحيحين <b>«بيتي»</b>، لا «قبري» كما يشيع خطأً على الألسنة؛ ولأن قبره ﷺ داخل ما كان بيته فالمعنى محفوظ. يُستحب تحرّي الصلاة في هذا الموضع إن تيسّر دون مزاحمة مؤذية.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">السلام على النبي ﷺ عند قبره الشريف</span>
+        <span class="badge mawquf">مستحب باجتهاد العلماء</span>
+      </div>
+      <p class="dua-text">السَّلَامُ عَلَيْكَ يَا رَسُولَ اللَّهِ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ</p>
+      <p class="card-note">هذه الصيغة اجتهاد من العلماء (كابن باز) بالقياس على صيغة التشهد ودعاء زيارة القبور، وليست نصًا مستقلًا وردَ في زيارة قبره ﷺ تحديدًا. تُقال استقبالًا لجهة القبر، ثم — إن أراد الزائر الدعاء لنفسه — يتحوّل إلى مكان آخر ويستقبل القبلة.</p>
+    </article>
+
+    <article class="card attn">
+      <div class="card-head">
+        <span class="card-title">تنبيه: مخالفات شائعة عند الزيارة</span>
+        <span class="badge attn">تحذير علماء</span>
+      </div>
+      <p class="dua-text">حذّر أهل العلم من: طلب الحوائج والاستغاثة بالنبي ﷺ عند القبر، والتمسّح به أو تقبيله، والطواف حوله، وإطالة الوقوف أو رفع الصوت بالدعاء عنده. المقصود الأصلي من الزيارة هو الصلاة في المسجد، والسلام على النبي ﷺ تابع لذلك.</p>
+      <p class="card-note">الأصل: «لَا تَتَّخِذُوا قَبْرِي عِيدًا... صَلُّوا عَلَيَّ حَيْثُمَا كُنْتُمْ فَإِنَّ صَلَاتَكُمْ تَبْلُغُنِي» (أبو داود).</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">السلام على أبي بكر وعمر رضي الله عنهما</span>
+        <span class="badge mawquf">سنّة عامة</span>
+      </div>
+      <p class="dua-text" style="font-family:var(--font-ui); font-size:calc(.98rem * var(--scale)); text-align:right; line-height:1.85;">بعد السلام على النبي ﷺ، يتقدّم خطوة إلى اليمين للسلام على أبي بكر الصدّيق، ثم خطوة أخرى للسلام على عمر بن الخطاب رضي الله عنهما، حسب ترتيب دفنهما. لم يرد نص محدد لصيغة السلام عليهما، ويكفي الترضّي عنهما والدعاء لهما.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">زيارة البقيع ومقابر الشهداء</span>
+        <span class="badge">صحيح — مسلم ٩٧٥</span>
+      </div>
+      <p class="dua-text">السَّلَامُ عَلَيْكُمْ أَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِينَ وَالْمُسْلِمِينَ، وَإِنَّا إِنْ شَاءَ اللَّهُ لَلَاحِقُونَ، أَسْأَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ</p>
+      <p class="card-note">عن بريدة رضي الله عنه. يُقال عند دخول أي مقبرة للمسلمين، ومنها بقيع الغرقد وقبور شهداء أُحد.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">مسجد قُباء</span>
+        <span class="badge">صحيح/حسن — ابن ماجه ١٤١٢</span>
+      </div>
+      <p class="dua-text">مَنْ تَطَهَّرَ فِي بَيْتِهِ، ثُمَّ أَتَى مَسْجِدَ قُبَاءٍ، فَصَلَّى فِيهِ صَلَاةً، كَانَ لَهُ كَأَجْرِ عُمْرَةٍ</p>
+      <p class="card-note">عن سهل بن حنيف رضي الله عنه. شرط نيل هذا الأجر أن يخرج من بيته قاصدًا الصلاة في مسجد قباء تحديدًا.</p>
+    </article>
+  </section>
+
+  <!-- ================= أدعية عامة ================= -->
+  <section class="panel" id="panel-jamiah" role="tabpanel" aria-labelledby="tab-jamiah">
+    <p class="section-lede">أدعية قرآنية جامعة، وآداب للتضرّع، إضافة إلى أذكار يومية من مجموعتك الخاصة — منظّمة هنا في أقسام.</p>
+
+    <nav class="subnav" aria-label="أقسام هذه الصفحة">
+      <a href="#sec-adab">الآداب</a>
+      <a href="#sec-quran">أدعية قرآنية</a>
+      <a href="#sec-istiftah">استفتاح الصلاة</a>
+      <a href="#sec-hajah">قضاء الحاجة</a>
+      <a href="#sec-istighfar">الاستغفار</a>
+      <a href="#sec-ibtila">عند الابتلاء</a>
+      <a href="#sec-sleep">قبل النوم</a>
+      <a href="#sec-night">الاستيقاظ ليلًا</a>
+      <a href="#sec-book">من كتاب النبي ﷺ</a>
+      <a href="#sec-salawat">الصلاة على النبي</a>
+      <a href="#sec-abna">دعاء للأبناء</a>
+    </nav>
+
+    <div class="subhead" id="sec-adab"><span class="n">١</span><h2>آداب الدعاء والتضرّع</h2><span class="line"></span></div>
+    <div class="etiquette">
+      <ul>
+        <li>استقبال القبلة قدر الإمكان، ورفع اليدين.</li>
+        <li>البدء بحمد الله والثناء عليه، والصلاة على النبي ﷺ قبل الطلب وبعده.</li>
+        <li>الإلحاح في الدعاء وتكراره، مع حسن الظنّ بالله في الإجابة.</li>
+        <li>خفض الصوت بين المخافتة والجهر، والخشوع والتذلل.</li>
+        <li>تحرّي مواطن وأوقات إجابة الدعاء: الطواف، والسعي، وعند الملتزم، والثلث الأخير من الليل.</li>
+      </ul>
+    </div>
+
+    <div class="subhead" id="sec-quran"><span class="n">٢</span><h2>أدعية قرآنية جامعة</h2><span class="line"></span></div>
+
+    <article class="card quran">
+      <div class="card-head">
+        <span class="card-title">دعاء أصحاب الكهف — طلب الرحمة والهداية</span>
+        <span class="badge quran">قرآن كريم — الكهف ١٠</span>
+      </div>
+      <p class="dua-text">﴿رَبَّنَا آتِنَا مِنْ لَدُنْكَ رَحْمَةً وَهَيِّئْ لَنَا مِنْ أَمْرِنَا رَشَدًا﴾</p>
+      <p class="card-note">دعاء قرآني جامع لطلب الرحمة والتوفيق والرشد، وليس مأثورًا خاصًا بمناسك العمرة — يصلح للدعاء به في أي وقت وموطن.</p>
+    </article>
+
+    <article class="card quran">
+      <div class="card-head">
+        <span class="card-title">جامع خيري الدنيا والآخرة</span>
+        <span class="badge quran">قرآن كريم — البقرة ٢٠١</span>
+      </div>
+      <p class="dua-text">﴿رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ﴾</p>
+      <p class="card-note">من أجمع الأدعية القرآنية. موضعه المأثور بين الركن اليماني والحجر الأسود في الطواف (انظر قسم «الطواف»)، ويصحّ الدعاء به في أي وقت آخر.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="card-title">سيّد الاستغفار</span>
+        <span class="badge">صحيح — البخاري ٦٣٠٦</span>
+      </div>
+      <p class="card-note">أفضل صيغ الاستغفار الثابتة عن النبي ﷺ — نصّها الكامل في قسم «الإحرام» أعلى الصفحة. يُستحب الإكثار منه في كل مواطن العمرة.</p>
+    </article>
+
+    <div class="source-note">الأقسام التالية (٣–٨) منقولة من مجموعتك الخاصة في Notion («ادعيه» و«كتاب ادعيه»)، وقد رُتِّبت ونُسِّقت هنا. الأذكار المأثورة عن النبي ﷺ فيها معروفة ومشهورة في كتب السنة؛ أما الأدعية التي لم أتحقق من درجتها تحديدًا في هذه الجلسة فقد وُسِمت بوسم محايد بدل نسبتها لحديث بعينه.</div>
+
+    <div class="subhead" id="sec-istiftah"><span class="n">٣</span><h2>دعاء استفتاح الصلاة</h2><span class="line"></span></div>
+    <p class="section-lede" style="margin-top:-8px;">يُختار أحد هذه الأدعية بعد تكبيرة الإحرام وقبل القراءة، ولا تُجمع كلها في ركعة واحدة.</p>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">التكبير والتحميد</span><span class="badge mawquf">مأثور</span></div>
+      <p class="dua-text">اللَّهُ أَكْبَرُ كَبِيرًا، وَالْحَمْدُ لِلَّهِ كَثِيرًا، وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلًا</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">سبحانك اللهم</span><span class="badge mawquf">مأثور</span></div>
+      <p class="dua-text">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، تَبَارَكَ اسْمُكَ، وَتَعَالَى جَدُّكَ، وَلَا إِلَٰهَ غَيْرُكَ</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">اللهم باعد بيني وبين خطاياي</span><span class="badge mawquf">مأثور</span></div>
+      <p class="dua-text">اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللَّهُمَّ نَقِّنِي مِنَ الْخَطَايَا كَمَا يُنَقَّى الثَّوْبُ الْأَبْيَضُ مِنَ الدَّنَسِ، اللَّهُمَّ اغْسِلْنِي مِنْ خَطَايَايَ بِالثَّلْجِ وَالْمَاءِ وَالْبَرَدِ</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">وجّهت وجهي</span><span class="badge mawquf">مأثور</span></div>
+      <p class="dua-text">وَجَّهْتُ وَجْهِيَ لِلَّذِي فَطَرَ السَّمَاوَاتِ وَالْأَرْضَ حَنِيفًا مُسْلِمًا وَمَا أَنَا مِنَ الْمُشْرِكِينَ، إِنَّ صَلَاتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ، لَا شَرِيكَ لَهُ وَبِذَلِكَ أُمِرْتُ وَأَنَا مِنَ الْمُسْلِمِينَ، اللَّهُمَّ أَنْتَ الْمَلِكُ لَا إِلَٰهَ إِلَّا أَنْتَ، سُبْحَانَكَ وَبِحَمْدِكَ، أَنْتَ رَبِّي وَأَنَا عَبْدُكَ، ظَلَمْتُ نَفْسِي وَاعْتَرَفْتُ بِذَنْبِي فَاغْفِرْ لِي ذُنُوبِي جَمِيعًا، لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، وَاهْدِنِي لِأَحْسَنِ الْأَخْلَاقِ لَا يَهْدِي لِأَحْسَنِهَا إِلَّا أَنْتَ، وَاصْرِفْ عَنِّي سَيِّئَهَا لَا يَصْرِفُ سَيِّئَهَا إِلَّا أَنْتَ، لَبَّيْكَ وَسَعْدَيْكَ وَالْخَيْرُ كُلُّهُ بِيَدَيْكَ، وَالْمَهْدِيُّ مَنْ هَدَيْتَ، أَنَا بِكَ وَإِلَيْكَ، تَبَارَكْتَ وَتَعَالَيْتَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ</p>
+    </article>
+
+    <div class="subhead" id="sec-hajah"><span class="n">٤</span><h2>قضاء الحاجة والكرب</h2><span class="line"></span></div>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">التوجّه إلى الله عند الحاجة</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ وَأَتَوَجَّهُ إِلَيْكَ بِحَقِّ سَيِّدِنَا مُحَمَّدٍ نَبِيِّكَ، نَبِيِّ الرَّحْمَةِ، يَا رَسُولَ اللَّهِ إِنِّي أَتَوَجَّهُ بِكَ إِلَى رَبِّي فِي حَاجَتِي هَذِهِ لِتُقْضَى لِي، اللَّهُمَّ فَشَفِّعْهُ فِيَّ</p>
+      <p class="card-note">تنبيه: هذا النوع من التوسّل (بجاه النبي ﷺ بعد وفاته) من مسائل الخلاف المعتبر بين أهل العلم — منهم من يُجيزه ومنهم من يمنعه. من أحبّ الاحتياط فليقتصر على التوسل بأسماء الله وصفاته، أو بالعمل الصالح، أو بدعاء رجل صالح حيّ.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">دعاء موجبات الرحمة</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">لَا إِلَٰهَ إِلَّا اللَّهُ الْحَلِيمُ الْكَرِيمُ، سُبْحَانَ اللَّهِ رَبِّ الْعَرْشِ الْعَظِيمِ، الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ، وَعَزَائِمَ مَغْفِرَتِكَ، وَالْغَنِيمَةَ مِنْ كُلِّ بِرٍّ، وَالسَّلَامَةَ مِنْ كُلِّ إِثْمٍ. لَا تَدَعْ لِي ذَنْبًا إِلَّا غَفَرْتَهُ، وَلَا هَمًّا إِلَّا فَرَّجْتَهُ، وَلَا حَاجَةً هِيَ لَكَ رِضًا إِلَّا قَضَيْتَهَا، يَا أَرْحَمَ الرَّاحِمِينَ</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">اللهم يسّرني لليسرى</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">اللَّهُمَّ يَسِّرْنِي لِلْيُسْرَى، وَجَنِّبْنِي الْعُسْرَى، وَارْزُقْنِي الْعَاقِبَةَ فِي الْأُولَى وَالْآخِرَةِ</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">دعاء الكرب</span><span class="badge">صحيح — مسلم ٢٧٣٠</span></div>
+      <p class="dua-text">لَا إِلَٰهَ إِلَّا اللَّهُ الْعَظِيمُ الْحَلِيمُ، لَا إِلَٰهَ إِلَّا اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ، لَا إِلَٰهَ إِلَّا اللَّهُ رَبُّ السَّمَاوَاتِ وَرَبُّ الْأَرْضِ وَرَبُّ الْعَرْشِ الْكَرِيمِ</p>
+      <p class="card-note">عن ابن عباس رضي الله عنهما. وورد بصيغة أقصر (شطرين فقط، وينتهي بـ«رب العرش العظيم») في صحيح البخاري ٦٣٤٥.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">عند الخوف الشديد</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">اللَّهُمَّ يَا وَلِيَّ نِعْمَتِي وَمَلَاذِي عِنْدَ كُرْبَتِي، اجْعَلْ مَا أَخَافُهُ وَأَحْذَرُهُ بَرْدًا وَسَلَامًا عَلَيَّ كَمَا جَعَلْتَ النَّارَ بَرْدًا وَسَلَامًا عَلَى إِبْرَاهِيمَ</p>
+      <p class="card-note">دعاء مأثور من العامة مستلهم من قوله تعالى: ﴿قُلْنَا يَا نَارُ كُونِي بَرْدًا وَسَلَامًا عَلَى إِبْرَاهِيمَ﴾ (الأنبياء: ٦٩)، وليس حديثًا نبويًا.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">الوقوف بباب الله</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">اللَّهُمَّ يَا وَلِيَّ النِّعَمِ وَدَافِعَ الشُّرُورِ وَالنِّقَمِ، وَقَفْتُ بِعَتَبَةِ بَابِكَ أَرْجُو رَحْمَتَكَ وَأَخْشَى عَذَابَكَ، اللَّهُمَّ لَا تُعَامِلْنِي فِي دُعَائِي هَذَا بِذُنُوبِي وَلَا بِمَا أَنَا أَهْلُهُ، وَعَامِلْنِي فِيهِ بِفَضْلِكَ وَكَرَمِكَ وَبِمَا أَنْتَ أَهْلُهُ، لَا بَابَ إِلَّا بَابُكَ، وَلَا رَجَاءَ إِلَّا رَجَاؤُكَ، اللَّهُمَّ إِنَّ لِي عِنْدَكَ دُعَاءً فَأَقْبِلْ دُعَائِي، وَلِي عِنْدَكَ رَجَاءً فَلَا تَرُدَّ رَجَائِي، اللَّهُمَّ اسْتَجِبْ، اللَّهُمَّ اسْتَجِبْ، اللَّهُمَّ اسْتَجِبْ</p>
+      <p class="card-note">دعاء مأثور من العامة، وليس حديثًا عن النبي ﷺ.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">طلب المعونة على أمور الدنيا</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">الْحَمْدُ لِلَّهِ الَّذِي خَلَقَنِي وَلَمْ أَكُ شَيْئًا، اللَّهُمَّ أَعِنِّي عَلَى هَوْلِ الدُّنْيَا وَمَصَائِبِ اللَّيَالِي وَالْأَيَّامِ، اللَّهُمَّ لَكَ ذَلَّلْتَنِي وَعَلَى طَاعَتِكَ أَعِنِّي، وَإِلَى خَلْقِكَ لَا تَكِلْنِي، وَإِلَيْكَ رَبِّي حَبِّبْنِي، اللَّهُمَّ إِنِّي أَتَبَرَّأُ مِنْ حَوْلِي وَقُوَّتِي، وَأَلْتَجِئُ إِلَى حَوْلِكَ وَقُوَّتِكَ يَا رَبَّ الْعَالَمِينَ</p>
+      <p class="card-note">دعاء مأثور من العامة، وليس حديثًا عن النبي ﷺ.</p>
+    </article>
+
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنَّ الْأَمْرَ أَمْرُكَ، وَالْخَلْقَ خَلْقُكَ، وَالْقَضَاءَ قَضَاؤُكَ، اللَّهُمَّ إِنِّي وَكَّلْتُكَ وَفَوَّضْتُ أَمْرِي إِلَيْكَ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</p>
+      <span class="cite">دعاء تفويض مأثور من العامة، من مجموعتك</span>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">طلب الإيمان الدائم والعافية</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ إِيمَانًا دَائِمًا، وَأَسْأَلُكَ قَلْبًا خَاشِعًا، وَأَسْأَلُكَ عِلْمًا نَافِعًا، وَأَسْأَلُكَ يَقِينًا صَادِقًا، وَأَسْأَلُكَ دِينًا قَيِّمًا، وَأَسْأَلُكَ الْعَافِيَةَ مِنْ كُلِّ بَلِيَّةٍ، وَأَسْأَلُكَ تَمَامَ الْعَافِيَةِ، وَأَسْأَلُكَ دَوَامَ الْعَافِيَةِ، وَأَسْأَلُكَ الشُّكْرَ عَلَى الْعَافِيَةِ، وَأَسْأَلُكَ الْغِنَى عَنِ النَّاسِ</p>
+      <p class="card-note">دعاء عام من مجموعتك، معناه طيب وإن لم يثبت نسبته لحديث عن النبي ﷺ.</p>
+    </article>
+
+    <div class="subhead" id="sec-istighfar"><span class="n">٥</span><h2>الاستغفار من الذنب</h2><span class="line"></span></div>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">يا رب وعزّتك</span><span class="badge mawquf">من كلام أهل العلم</span></div>
+      <p class="dua-text">يَا رَبِّ وَعِزَّتِكَ مَا أَرَدْتُ بِمَعْصِيَتِكَ مُخَالَفَتَكَ، وَلَا عَصَيْتُكَ إِذْ عَصَيْتُكَ وَأَنَا بِجَلَالِكَ جَاهِلٌ، وَلَا بِنَظَرِكَ مُسْتَخِفٌّ، وَلَا لِعُقُوبَتِكَ مُتَعَرِّضٌ، وَلَكِنْ سَوَّلَتْ لِي نَفْسِي، وَأَعَانَنِي عَلَى ذَلِكَ شَقْوَتِي، وَغَرَّنِي سِتْرُكَ الْمُرْخَى عَلَيَّ، فَعَصَيْتُكَ بِفِعْلِي وَخَالَفْتُكَ بِجَهْلِي، فَمِنْ عَذَابِكَ الْآنَ مَنْ يَسْتَنْقِذُنِي، وَبِحَبْلِ مَنْ أَعْتَصِمُ إِنْ قَطَعْتَ حَبْلَكَ عَنِّي</p>
+      <p class="card-note">من أدب الدعاء والمناجاة المأثور عند أهل العلم، وليس حديثًا عن النبي ﷺ.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">ذنوب الخلوات</span><span class="badge mawquf">بيت شعر مأثور</span></div>
+      <p class="dua-text" style="font-family:var(--font-display); font-style:italic;">وَإِذَا خَلَوْتَ بِرِيبَةٍ فِي ظُلْمَةٍ &nbsp;•&nbsp; وَالنَّفْسُ دَاعِيَةٌ إِلَى الطُّغْيَانِ<br>فَاسْتَحْيِ مِنْ نَظَرِ الْإِلَٰهِ وَقُلْ لَهَا &nbsp;•&nbsp; إِنَّ الَّذِي خَلَقَ الظَّلَامَ يَرَانِي</p>
+      <p class="card-note">بيت شعر معروف في الوعظ، وليس آية ولا حديثًا — يُستأنس به للتذكير لا للاستدلال.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">دعاء ذنوب الخلوات</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">اللَّهُمَّ إِنَّ خَلْوَتِي لَا تَخْفَى عَلَيْكَ، وَضَعْفِي لَا يَخْفَى عَنْكَ، فَاسْتُرْنِي بِسَتْرِكَ الْجَمِيلِ، وَطَهِّرْ قَلْبِي مِنَ الذُّنُوبِ، اللَّهُمَّ ارْزُقْنِي حَيَاءً مِنْكَ يَمْنَعُنِي مِنْ مَعْصِيَتِكَ، وَتَوْبَةً صَادِقَةً لَا أَعُودُ بَعْدَهَا إِلَى ذَنْبٍ، وَاجْعَلْ خَلْوَتِي عَامِرَةً بِذِكْرِكَ وَطَاعَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ</p>
+      <p class="card-note">دعاء مأثور من العامة، وليس حديثًا عن النبي ﷺ.</p>
+    </article>
+
+    <div class="subhead" id="sec-ibtila"><span class="n">٦</span><h2>عند الابتلاء أو رؤية مبتلى</h2><span class="line"></span></div>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">عند رؤية المبتلى</span><span class="badge mawquf">حسن — الترمذي</span></div>
+      <p class="dua-text">الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي مِمَّا ابْتَلَاكَ بِهِ، وَفَضَّلَنِي عَلَى كَثِيرٍ مِمَّنْ خَلَقَ تَفْضِيلًا</p>
+      <p class="card-note">تُقال سرًّا لا بحضور المبتلى حتى لا يُؤذى بها.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">التعوّذ من الأسقام</span><span class="badge mawquf">مأثور — أبو داود والنسائي</span></div>
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْبَرَصِ، وَالْجُنُونِ، وَالْجُذَامِ، وَمِنْ سَيِّئِ الْأَسْقَامِ</p>
+    </article>
+
+    <div class="subhead" id="sec-sleep"><span class="n">٧</span><h2>عند الذهاب إلى الفراش</h2><span class="line"></span></div>
+
+    <article class="card quran">
+      <div class="card-head"><span class="card-title">آية الكرسي</span><span class="badge quran">قرآن كريم — البقرة ٢٥٥</span></div>
+      <p class="dua-text">﴿اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ﴾</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">دعاء قبل النوم</span><span class="badge">صحيح — مسلم ٦٨٨٩</span></div>
+      <p class="dua-text">اللَّهُمَّ رَبَّ السَّمَاوَاتِ وَرَبَّ الْأَرْضِ وَرَبَّ الْعَرْشِ الْعَظِيمِ، رَبَّنَا وَرَبَّ كُلِّ شَيْءٍ، فَالِقَ الْحَبِّ وَالنَّوَى، وَمُنْزِلَ التَّوْرَاةِ وَالْإِنْجِيلِ وَالْفُرْقَانِ، أَعُوذُ بِكَ مِنْ شَرِّ كُلِّ شَيْءٍ أَنْتَ آخِذٌ بِنَاصِيَتِهِ، اللَّهُمَّ أَنْتَ الْأَوَّلُ فَلَيْسَ قَبْلَكَ شَيْءٌ، وَأَنْتَ الْآخِرُ فَلَيْسَ بَعْدَكَ شَيْءٌ، وَأَنْتَ الظَّاهِرُ فَلَيْسَ فَوْقَكَ شَيْءٌ، وَأَنْتَ الْبَاطِنُ فَلَيْسَ دُونَكَ شَيْءٌ، اقْضِ عَنَّا الدَّيْنَ وَأَغْنِنَا مِنَ الْفَقْرِ</p>
+      <p class="card-note">عن أبي هريرة رضي الله عنه.</p>
+    </article>
+
+    <article class="card quran">
+      <div class="card-head"><span class="card-title">آخر آيتين من سورة البقرة</span><span class="badge quran">قرآن كريم — البقرة ٢٨٥-٢٨٦</span></div>
+      <p class="dua-text">﴿آمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ * لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِنْ نَسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِنْ قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ﴾</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">أسلمت نفسي إليك</span><span class="badge">متفق عليه</span></div>
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَسْلَمْتُ نَفْسِي إِلَيْكَ، وَوَجَّهْتُ وَجْهِي إِلَيْكَ، وَأَلْجَأْتُ ظَهْرِي إِلَيْكَ، وَفَوَّضْتُ أَمْرِي إِلَيْكَ رَغْبَةً وَرَهْبَةً إِلَيْكَ، لَا مَلْجَأَ وَلَا مَنْجَا مِنْكَ إِلَّا إِلَيْكَ، آمَنْتُ بِكِتَابِكَ الَّذِي أَنْزَلْتَ، وَنَبِيِّكَ الَّذِي أَرْسَلْتَ</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">دعاء اسم الله الأعظم</span><span class="badge">صحيح — أبو داود والترمذي</span></div>
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ بِأَنِّي أَشْهَدُ أَنَّكَ أَنْتَ اللَّهُ لَا إِلَٰهَ إِلَّا أَنْتَ، الْأَحَدُ الصَّمَدُ، الَّذِي لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ</p>
+      <p class="card-note">ثم يسأل الله حاجته.</p>
+    </article>
+
+    <div class="subhead" id="sec-night"><span class="n">٨</span><h2>من استيقظ من الليل</h2><span class="line"></span></div>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">تعارّ من الليل</span><span class="badge">صحيح — البخاري</span></div>
+      <p class="dua-text">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَٰهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ، اللَّهُمَّ اغْفِرْ لِي</p>
+      <p class="card-note">من قالها ثم دعا استُجيب له، وإن توضّأ وصلّى قُبلت صلاته.</p>
+    </article>
+
+    <div class="subhead" id="sec-book"><span class="n">٩</span><h2>من كتاب «أدعية النبي ﷺ»</h2><span class="line"></span></div>
+    <div class="source-note">جمع هذه الأدعية الشيخ <b>عبد المحسن بن حمد العبّاد البدر</b> — رئيس الجامعة الإسلامية بالمدينة المنورة سابقًا، والمدرّس بالمسجد النبوي الشريف — من كتابه «تبصير الناسك بأحكام المناسك». كل دعاء هنا حديث نبوي ثابت بتخريجه الكامل من الكتاب (رقم الحديث والراوي). راجعتُ نسختك من الكتاب وحذفتُ منها ما كان مكررًا مع ما سبق في هذه الصفحة (سيد الاستغفار، ودعاء ما قبل النوم عن أبي هريرة).</div>
+
+    <div class="group-label">الاستغفار والتوبة</div>
+
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْمًا كَثِيرًا، وَلَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ، فَاغْفِرْ لِي مَغْفِرَةً مِنْ عِنْدِكَ وَارْحَمْنِي إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ</p>
+      <span class="cite">متفق عليه — البخاري ٨٣٤ ومسلم ٦٨٦٩ — عن أبي بكر الصدّيق رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">رَبِّ اغْفِرْ لِي خَطِيئَتِي وَجَهْلِي وَإِسْرَافِي فِي أَمْرِي كُلِّهِ، وَمَا أَنْتَ أَعْلَمُ بِهِ مِنِّي، اللَّهُمَّ اغْفِرْ لِي خَطَايَايَ وَعَمْدِي وَجَهْلِي وَهَزْلِي وَكُلُّ ذَلِكَ عِنْدِي، اللَّهُمَّ اغْفِرْ لِي مَا قَدَّمْتُ وَمَا أَخَّرْتُ وَمَا أَسْرَرْتُ وَمَا أَعْلَنْتُ، أَنْتَ الْمُقَدِّمُ وَأَنْتَ الْمُؤَخِّرُ وَأَنْتَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ</p>
+      <span class="cite">متفق عليه — البخاري ٦٣٩٨ ومسلم ٦٩٠١ — عن أبي موسى الأشعري رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ، دِقَّهُ وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ، وَعَلَانِيَتَهُ وَسِرَّهُ</p>
+      <span class="cite">صحيح — مسلم ١٠٨٤ — عن أبي هريرة رضي الله عنه</span>
+    </article>
+
+    <div class="group-label">الاستعاذة من الهمّ والعجز والآفات</div>
+
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْجُبْنِ وَالْبُخْلِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ</p>
+      <span class="cite">صحيح — البخاري ٦٣٦٩ — عن أنس بن مالك رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْبُخْلِ، وَأَعُوذُ بِكَ مِنَ الْجُبْنِ، وَأَعُوذُ بِكَ أَنْ أُرَدَّ إِلَى أَرْذَلِ الْعُمُرِ، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الدُّنْيَا، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ</p>
+      <span class="cite">صحيح — البخاري ٦٣٦٥ — عن سعد بن أبي وقاص رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكَسَلِ وَالْهَرَمِ وَالْمَأْثَمِ وَالْمَغْرَمِ، وَمِنْ فِتْنَةِ الْقَبْرِ وَعَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ النَّارِ وَعَذَابِ النَّارِ، وَمِنْ شَرِّ فِتْنَةِ الْغِنَى، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الْفَقْرِ، وَأَعُوذُ بِكَ مِنْ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ، اللَّهُمَّ اغْسِلْ عَنِّي خَطَايَايَ بِمَاءِ الثَّلْجِ وَالْبَرَدِ، وَنَقِّ قَلْبِي مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ الْأَبْيَضَ مِنَ الدَّنَسِ، وَبَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ</p>
+      <span class="cite">متفق عليه — البخاري ٦٣٦٨ ومسلم ٦٨٧١ — عن عائشة رضي الله عنها</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَالْجُبْنِ وَالْبُخْلِ، وَالْهَرَمِ وَعَذَابِ الْقَبْرِ، اللَّهُمَّ آتِ نَفْسِي تَقْوَاهَا وَزَكِّهَا أَنْتَ خَيْرُ مَنْ زَكَّاهَا، أَنْتَ وَلِيُّهَا وَمَوْلَاهَا، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عِلْمٍ لَا يَنْفَعُ، وَمِنْ قَلْبٍ لَا يَخْشَعُ، وَمِنْ نَفْسٍ لَا تَشْبَعُ، وَمِنْ دَعْوَةٍ لَا يُسْتَجَابُ لَهَا</p>
+      <span class="cite">صحيح — مسلم ٦٩٠٦ — عن زيد بن أرقم رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ جَهْدِ الْبَلَاءِ، وَدَرَكِ الشَّقَاءِ، وَسُوءِ الْقَضَاءِ، وَشَمَاتَةِ الْأَعْدَاءِ</p>
+      <span class="cite">متفق عليه — البخاري ٦٣٤٧ ومسلم ٦٨٧٧ — عن أبي هريرة رضي الله عنه</span>
+    </article>
+
+    <div class="group-label">الهداية والتقوى والصلاح</div>
+
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ أَصْلِحْ لِي دِينِي الَّذِي هُوَ عِصْمَةُ أَمْرِي، وَأَصْلِحْ لِي دُنْيَايَ الَّتِي فِيهَا مَعَاشِي، وَأَصْلِحْ لِي آخِرَتِي الَّتِي فِيهَا مَعَادِي، وَاجْعَلِ الْحَيَاةَ زِيَادَةً لِي فِي كُلِّ خَيْرٍ، وَاجْعَلِ الْمَوْتَ رَاحَةً لِي مِنْ كُلِّ شَرٍّ</p>
+      <span class="cite">صحيح — مسلم ٦٩٠٣ — عن أبي هريرة رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى</p>
+      <span class="cite">صحيح — مسلم ٦٩٠٤ — عن ابن مسعود رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ مُصَرِّفَ الْقُلُوبِ، صَرِّفْ قُلُوبَنَا عَلَى طَاعَتِكَ</p>
+      <span class="cite">صحيح — مسلم ٦٧٥٠ — عن عبد الله بن عمرو رضي الله عنهما</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ رَبَّ جَبْرَائِيلَ وَمِيكَائِيلَ وَإِسْرَافِيلَ، فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، عَالِمَ الْغَيْبِ وَالشَّهَادَةِ، أَنْتَ تَحْكُمُ بَيْنَ عِبَادِكَ فِيمَا كَانُوا فِيهِ يَخْتَلِفُونَ، اهْدِنِي لِمَا اخْتُلِفَ فِيهِ مِنَ الْحَقِّ بِإِذْنِكَ، إِنَّكَ تَهْدِي مَنْ تَشَاءُ إِلَى صِرَاطٍ مُسْتَقِيمٍ</p>
+      <span class="cite">صحيح — مسلم ١٨١١ — عن عائشة رضي الله عنها (دعاء قيام الليل)</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الْأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ، وَأَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ، وَعَزَائِمَ مَغْفِرَتِكَ، وَأَسْأَلُكَ شُكْرَ نِعْمَتِكَ، وَحُسْنَ عِبَادَتِكَ، وَأَسْأَلُكَ قَلْبًا سَلِيمًا، وَلِسَانًا صَادِقًا، وَأَسْأَلُكَ مِنْ خَيْرِ مَا تَعْلَمُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا تَعْلَمُ، وَأَسْتَغْفِرُكَ لِمَا تَعْلَمُ، إِنَّكَ أَنْتَ عَلَّامُ الْغُيُوبِ</p>
+      <span class="cite">حسن — الطبراني في الكبير ٧١٣٥ — عن شداد بن أوس رضي الله عنه</span>
+    </article>
+
+    <div class="group-label">العافية والحفظ والأمان</div>
+
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ مَا عَمِلْتُ، وَمِنْ شَرِّ مَا لَمْ أَعْمَلْ</p>
+      <span class="cite">صحيح — مسلم ٦٨٩٥ — عن عائشة رضي الله عنها</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ زَوَالِ نِعْمَتِكَ، وَتَحَوُّلِ عَافِيَتِكَ، وَفُجَاءَةِ نِقْمَتِكَ، وَجَمِيعِ سَخَطِكَ</p>
+      <span class="cite">صحيح — مسلم ٦٩٤٣ — عن ابن عمر رضي الله عنهما</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنَ الْخَيْرِ كُلِّهِ عَاجِلِهِ وَآجِلِهِ مَا عَلِمْتُ مِنْهُ وَمَا لَمْ أَعْلَمْ، وَأَعُوذُ بِكَ مِنَ الشَّرِّ كُلِّهِ عَاجِلِهِ وَآجِلِهِ مَا عَلِمْتُ مِنْهُ وَمَا لَمْ أَعْلَمْ، اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ خَيْرِ مَا سَأَلَكَ عَبْدُكَ وَنَبِيُّكَ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا عَاذَ بِهِ عَبْدُكَ وَنَبِيُّكَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْجَنَّةَ وَمَا قَرَّبَ إِلَيْهَا مِنْ قَوْلٍ أَوْ عَمَلٍ، وَأَعُوذُ بِكَ مِنَ النَّارِ وَمَا قَرَّبَ إِلَيْهَا مِنْ قَوْلٍ أَوْ عَمَلٍ، وَأَسْأَلُكَ أَنْ تَجْعَلَ كُلَّ قَضَاءٍ قَضَيْتَهُ لِي خَيْرًا</p>
+      <span class="cite">صحيح بإسناده — ابن ماجه ٣٨٤٦، السلسلة الصحيحة للألباني ١٥٤٢ — عن عائشة رضي الله عنها</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ بِعِلْمِكَ الْغَيْبَ وَقُدْرَتِكَ عَلَى الْخَلْقِ، أَحْيِنِي مَا عَلِمْتَ الْحَيَاةَ خَيْرًا لِي، وَتَوَفَّنِي إِذَا عَلِمْتَ الْوَفَاةَ خَيْرًا لِي، اللَّهُمَّ وَأَسْأَلُكَ خَشْيَتَكَ فِي الْغَيْبِ وَالشَّهَادَةِ، وَأَسْأَلُكَ كَلِمَةَ الْحَقِّ فِي الرِّضَا وَالْغَضَبِ، وَأَسْأَلُكَ الْقَصْدَ فِي الْفَقْرِ وَالْغِنَى، وَأَسْأَلُكَ نَعِيمًا لَا يَنْفَدُ، وَأَسْأَلُكَ قُرَّةَ عَيْنٍ لَا تَنْقَطِعُ، وَأَسْأَلُكَ الرِّضَاءَ بَعْدَ الْقَضَاءِ، وَأَسْأَلُكَ بَرْدَ الْعَيْشِ بَعْدَ الْمَوْتِ، وَأَسْأَلُكَ لَذَّةَ النَّظَرِ إِلَى وَجْهِكَ وَالشَّوْقَ إِلَى لِقَائِكَ فِي غَيْرِ ضَرَّاءَ مُضِرَّةٍ وَلَا فِتْنَةٍ مُضِلَّةٍ، اللَّهُمَّ زَيِّنَّا بِزِينَةِ الْإِيمَانِ وَاجْعَلْنَا هُدَاةً مُهْتَدِينَ</p>
+      <span class="cite">حسن — النسائي ١٣٠٥ — عن عمّار بن ياسر رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي، وَاحْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي وَعَنْ يَمِينِي وَعَنْ شِمَالِي وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي</p>
+      <span class="cite">صحيح — أبو داود ٥٠٧٤ — عن ابن عمر رضي الله عنهما</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ، فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ</p>
+      <span class="cite">صحيح — الترمذي ٣٣٩٢ — عن أبي هريرة رضي الله عنه</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ</p>
+      <span class="cite">حسن — الترمذي ٣٥٦٣، السلسلة الصحيحة للألباني ٢٦٦</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَٰهَ إِلَّا أَنْتَ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَٰهَ إِلَّا أَنْتَ</p>
+      <span class="cite">حسن — أبو داود ٥٠٩٠ — عن أبي بكرة رضي الله عنه</span>
+    </article>
+
+    <div class="group-label">أدعية القيام والسجود والصلاة</div>
+
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ لَكَ أَسْلَمْتُ، وَبِكَ آمَنْتُ، وَعَلَيْكَ تَوَكَّلْتُ، وَإِلَيْكَ أَنَبْتُ، وَبِكَ خَاصَمْتُ، اللَّهُمَّ إِنِّي أَعُوذُ بِعِزَّتِكَ لَا إِلَٰهَ إِلَّا أَنْتَ أَنْ تُضِلَّنِي، أَنْتَ الْحَيُّ الَّذِي لَا يَمُوتُ، وَالْجِنُّ وَالْإِنْسُ يَمُوتُونَ</p>
+      <span class="cite">متفق عليه — البخاري ٧٣٨٣ ومسلم ٦٨٩٩ — عن ابن عباس رضي الله عنهما</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِرِضَاكَ مِنْ سَخَطِكَ، وَبِمُعَافَاتِكَ مِنْ عُقُوبَتِكَ، وَأَعُوذُ بِكَ مِنْكَ، لَا أُحْصِي ثَنَاءً عَلَيْكَ، أَنْتَ كَمَا أَثْنَيْتَ عَلَى نَفْسِكَ</p>
+      <span class="cite">صحيح — مسلم ١٠٩٠ — عن عائشة رضي الله عنها (دعاء في السجود)</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ اجْعَلْ لِي فِي قَلْبِي نُورًا، وَفِي لِسَانِي نُورًا، وَفِي سَمْعِي نُورًا، وَفِي بَصَرِي نُورًا، وَمِنْ فَوْقِي نُورًا، وَمِنْ تَحْتِي نُورًا، وَعَنْ يَمِينِي نُورًا، وَعَنْ شِمَالِي نُورًا، وَمِنْ بَيْنِ يَدَيَّ نُورًا، وَمِنْ خَلْفِي نُورًا، وَاجْعَلْ فِي نَفْسِي نُورًا، وَأَعْظِمْ لِي نُورًا</p>
+      <span class="cite">متفق عليه — البخاري ٦٣١٦ ومسلم ١٧٩٧ — عن ابن عباس رضي الله عنهما (دعاء القيام لصلاة الليل)</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">رَبِّ أَعِنِّي وَلَا تُعِنْ عَلَيَّ، وَانْصُرْنِي وَلَا تَنْصُرْ عَلَيَّ، وَامْكُرْ لِي وَلَا تَمْكُرْ عَلَيَّ، وَاهْدِنِي وَيَسِّرِ الْهُدَى لِي، وَانْصُرْنِي عَلَى مَنْ بَغَى عَلَيَّ، رَبِّ اجْعَلْنِي لَكَ شَكَّارًا، لَكَ ذَكَّارًا، لَكَ رَهَّابًا، لَكَ مِطْوَاعًا، لَكَ مُخْبِتًا إِلَيْكَ أَوَّاهًا مُنِيبًا، رَبِّ تَقَبَّلْ تَوْبَتِي، وَاغْسِلْ حَوْبَتِي، وَأَجِبْ دَعْوَتِي، وَثَبِّتْ حُجَّتِي، وَسَدِّدْ لِسَانِي، وَاهْدِ قَلْبِي، وَاسْلُلْ سَخِيمَةَ صَدْرِي</p>
+      <span class="cite">صحيح — الترمذي ٣٥٥١ — عن ابن عباس رضي الله عنهما</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ لَكَ الْحَمْدُ كُلُّهُ، اللَّهُمَّ لَا قَابِضَ لِمَا بَسَطْتَ، وَلَا بَاسِطَ لِمَا قَبَضْتَ، وَلَا هَادِيَ لِمَا أَضْلَلْتَ، وَلَا مُضِلَّ لِمَنْ هَدَيْتَ، وَلَا مُعْطِيَ لِمَا مَنَعْتَ، وَلَا مَانِعَ لِمَا أَعْطَيْتَ، وَلَا مُقَرِّبَ لِمَا بَاعَدْتَ، وَلَا مُبَاعِدَ لِمَا قَرَّبْتَ، اللَّهُمَّ ابْسُطْ عَلَيْنَا مِنْ بَرَكَاتِكَ وَرَحْمَتِكَ وَفَضْلِكَ وَرِزْقِكَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ النَّعِيمَ الْمُقِيمَ الَّذِي لَا يَحُولُ وَلَا يَزُولُ، وَأَسْأَلُكَ النَّعِيمَ يَوْمَ الْعَيْلَةِ وَالْأَمْنَ يَوْمَ الْخَوْفِ، اللَّهُمَّ إِنِّي عَائِذٌ بِكَ مِنْ شَرِّ مَا أَعْطَيْتَنَا وَشَرِّ مَا مَنَعْتَ، اللَّهُمَّ حَبِّبْ إِلَيْنَا الْإِيمَانَ وَزَيِّنْهُ فِي قُلُوبِنَا، وَكَرِّهْ إِلَيْنَا الْكُفْرَ وَالْفُسُوقَ وَالْعِصْيَانَ، وَاجْعَلْنَا مِنَ الرَّاشِدِينَ، اللَّهُمَّ تَوَفَّنَا مُسْلِمِينَ وَأَحْيِنَا مُسْلِمِينَ وَأَلْحِقْنَا بِالصَّالِحِينَ غَيْرَ خَزَايَا وَلَا مَفْتُونِينَ</p>
+      <span class="cite">صحيح — مسند الإمام أحمد ١٥٤٩٢ — عن رفاعة الزُّرَقي رضي الله عنه (دعاء الرفع من الركوع مطوّلًا)</span>
+    </article>
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+      <span class="cite">متفق عليه — البخاري ٣٣٧٠ ومسلم ٩٠٨ — عن كعب بن عجرة رضي الله عنه (الصلاة الإبراهيمية في التشهد)</span>
+    </article>
+
+    <div class="group-label">قائمة تجميعية: ٣٤ استعاذة نبوية</div>
+    <article class="card">
+      <p class="card-note" style="border-top:none; padding-top:0; margin-top:14px;">تجمع هذه القائمة عبارات استعاذة («اللهم إني أعوذ بك من...») وردت متفرقةً في أحاديث صحيحة مختلفة — أغلبها مذكور بنصه الكامل في المجموعة أعلاه (البخاري ٦٣٦٩ و٦٣٦٥، ومسلم ٦٩٤٣ وغيرها) — جُمعت هنا للحفظ السريع على نفس الترتيب المتداول، وليست حديثًا واحدًا بذاته.</p>
+      <p class="dua-text" style="text-align:right; font-size:calc(1.05rem * var(--scale)); line-height:2.3;">
+        اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ:<br>
+        ١) الْعَجْزِ، ٢) وَالْكَسَلِ، ٣) وَالْجُبْنِ، ٤) وَالْبُخْلِ، ٥) وَالْهَرَمِ، ٦) وَالْقَسْوَةِ، ٧) وَالْغَفْلَةِ، ٨) وَالْعَيْلَةِ، ٩) وَالذِّلَّةِ، ١٠) وَالْمَسْكَنَةِ
+        <br><br>
+        وَأَعُوذُ بِكَ مِنْ:<br>
+        ١١) الْفَقْرِ، ١٢) وَالْكُفْرِ، ١٣) وَالشِّرْكِ، ١٤) وَالْفُسُوقِ، ١٥) وَالشِّقَاقِ، ١٦) وَالنِّفَاقِ، ١٧) وَالسُّمْعَةِ، ١٨) وَالرِّيَاءِ
+        <br><br>
+        وَأَعُوذُ بِكَ مِنْ:<br>
+        ١٩) الصَّمَمِ، ٢٠) وَالْبَكَمِ، ٢١) وَالْجُنُونِ، ٢٢) وَالْجُذَامِ، ٢٣) وَالْبَرَصِ، ٢٤) وَسَيِّئِ الْأَسْقَامِ
+        <br><br>
+        وَأَعُوذُ بِكَ مِنْ:<br>
+        ٢٥) غَلَبَةِ الدَّيْنِ، ٢٦) وَقَهْرِ الرِّجَالِ
+        <br><br>
+        وَأَعُوذُ بِكَ مِنْ:<br>
+        ٢٧) زَوَالِ نِعْمَتِكَ، ٢٨) وَتَحَوُّلِ عَافِيَتِكَ، ٢٩) وَفُجَاءَةِ نِقْمَتِكَ، ٣٠) وَجَمِيعِ سَخَطِكَ
+        <br><br>
+        وَأَعُوذُ بِكَ مِنْ:<br>
+        ٣١) جَهْدِ الْبَلَاءِ، ٣٢) وَدَرَكِ الشَّقَاءِ، ٣٣) وَسُوءِ الْقَضَاءِ، ٣٤) وَشَمَاتَةِ الْأَعْدَاءِ
+      </p>
+    </article>
+
+    <div class="subhead" id="sec-salawat"><span class="n">١٠</span><h2>صيغ الصلاة على النبي ﷺ</h2><span class="line"></span></div>
+    <div class="source-note">الصلاة على النبي ﷺ عبادة عظيمة مستحبة في كل وقت وبأي لفظ صحيح المعنى. الصيغتان التاليتان متداولتان بين الناس وليستا حديثًا نبويًا بلفظه — فهما دعاء عام لا بأس بالدعاء به، ما دام معناه صحيحًا ولا يُنسب للنبي ﷺ أنه قاله أو أن له أثرًا خاصًا (كرؤيته في المنام) لم يثبت.</div>
+
+    <article class="card compact">
+      <p class="dua-text">اللَّهُمَّ صَلِّ وَسَلِّمْ وَزِدْ وَبَارِكْ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ سَيِّدِنَا مُحَمَّدٍ:<br>
+      عَدَدَ مَا خَلَقْتَ، وَمِلْءَ مَا خَلَقْتَ،<br>
+      عَدَدَ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ، وَمِلْءَ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ،<br>
+      عَدَدَ مَا أَحْصَى كِتَابُكَ، وَمِلْءَ مَا أَحْصَى كِتَابُكَ،<br>
+      عَدَدَ كُلِّ شَيْءٍ، وَمِلْءَ كُلِّ شَيْءٍ</p>
+      <span class="cite">صيغة صلاة متداولة، وليست حديثًا نبويًا بلفظ محدد</span>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">الصلاة الكاملة</span><span class="badge mawquf">صيغة مشهورة، ليست حديثًا</span></div>
+      <p class="dua-text">اللَّهُمَّ صَلِّ صَلَاةً كَامِلَةً، وَسَلِّمْ سَلَامًا تَامًّا عَلَى نَبِيٍّ تَنْحَلُّ بِهِ الْعُقَدُ، وَتَنْفَرِجُ بِهِ الْكُرَبُ، وَتُقْضَى بِهِ الْحَوَائِجُ، وَتُنَالُ بِهِ الرَّغَائِبُ، وَحُسْنُ الْخَوَاتِيمِ، وَيُسْتَسْقَى الْغَمَامُ بِوَجْهِهِ الْكَرِيمِ، وَعَلَى آلِهِ</p>
+      <p class="card-note">صيغة صلاة مشهورة متداولة قديمًا في كتب الأذكار، وليست حديثًا مرفوعًا إلى النبي ﷺ.</p>
+    </article>
+
+    <div class="subhead" id="sec-abna"><span class="n">١١</span><h2>دعاء الوالدين لأبنائهم</h2><span class="line"></span></div>
+
+    <article class="card">
+      <div class="card-head"><span class="card-title">دعاء للأبناء</span><span class="badge mawquf">من مجموعتك</span></div>
+      <p class="dua-text">اللَّهُمَّ يَا رَازِقَ السَّائِلِينَ، وَرَاحِمَ الْمَسَاكِينِ، يَا غِيَاثَ الْمُسْتَغِيثِينَ، إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ، اللَّهُمَّ أَسْأَلُكَ رِزْقًا وَاسِعًا طَيِّبًا مِنْ رِزْقِكَ يَا قَاضِيَ الْحَاجَاتِ، اقْضِ حَوَائِجِي وَفَرِّجْ كُرْبَتِي وَارْزُقْنِي مِنْ حَيْثُ لَا أَحْتَسِبُ، اللَّهُمَّ إِنِّي أَسْتَوْدِعُكَ أَبْنَائِي فِي مَكَانٍ غَابَتْ عَنْهُمْ عَيْنِي وَلَكِنَّ عَيْنَكَ لَا تَغِيبُ، فَاحْفَظْهُمْ حِفْظًا يَلِيقُ بِعَظَمَتِكَ يَا رَبِّي، فَإِنَّهُمْ أَغْلَى مَا أَمْلِكُ فِي هَذِهِ الدُّنْيَا، فَلَا تُرِنِي فِيهِمْ مَكْرُوهًا، اللَّهُمَّ إِنَّهُمْ هِبَةٌ مِنْكَ وَمَصَابِيحُ بَيْتِي، فَاللَّهُمَّ لَا تُطْفِئْ فِيهِمْ نُورًا، وَاجْعَلْهُمْ مِنَ الصَّالِحِينَ، اللَّهُمَّ اجْعَلْهُمْ مِنْ خَيْرِ النَّاسِ، وَازْرَعْ فِيهِمُ الْبَرَكَةَ وَحُبَّ النَّاسِ، وَاكْتُبْ لَهُمُ النَّجَاحَ يَوْمًا بَعْدَ يَوْمٍ، اللَّهُمَّ اجْعَلْهُمْ مِمَّنْ يَسْتَمِعُونَ الْقَوْلَ فَيَتَّبِعُونَ أَحْسَنَهُ</p>
+      <p class="card-note">دعاء مأثور من العامة وليس حديثًا. خاتمته مقتبسة من قوله تعالى: ﴿فَبَشِّرْ عِبَادِ * الَّذِينَ يَسْتَمِعُونَ الْقَوْلَ فَيَتَّبِعُونَ أَحْسَنَهُ﴾ (الزمر: ١٧-١٨). صحّحتُ عبارة «هدّهم» في نصك الأصلي إلى «اجعلهم» لتصحيح خطأ إملائي واضح.</p>
+    </article>
+
+    <div class="legend" aria-hidden="true">
+      <span><i style="background:var(--gold)"></i> حديث صحيح</span>
+      <span><i style="background:var(--teal)"></i> نص قرآني</span>
+      <span><i style="background:var(--ink-faint)"></i> موقوف / سنّة عامة / من مجموعتك</span>
+      <span><i style="background:var(--attn)"></i> تنبيه: غير ثابت أو بدعة محذّرة</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  رُوجعت نصوص هذه الصفحة ودرجاتها على صحيح البخاري، وصحيح مسلم، وسنن أبي داود والترمذي والنسائي وابن ماجه، ومسند أحمد، والقرآن الكريم، وفتاوى موثوقة (ابن باز، إسلام ويب، الإسلام سؤال وجواب)، وكتاب «أدعية النبي ﷺ» للشيخ عبد المحسن العبّاد البدر، إضافة إلى أذكار من مجموعتك الخاصة في Notion. تُقبل الله منكم صالح الأعمال.
+</footer>
+
+<div class="fontctl" role="group" aria-label="حجم الخط">
+  <button id="font-dec" aria-label="تصغير الخط">أ-</button>
+  <button id="font-inc" aria-label="تكبير الخط">أ+</button>
+</div>
+
+<button class="add-fab" id="addFab" aria-haspopup="dialog" aria-controls="addDrawer" aria-label="إضافة دعاء">+</button>
+<div class="add-overlay" id="addOverlay" hidden></div>
+<aside class="add-drawer" id="addDrawer" role="dialog" aria-modal="true" aria-label="إضافة دعاء" aria-hidden="true">
+  <div class="add-drawer-head">
+    <h2>إضافة دعاء</h2>
+    <button class="add-close" id="addClose" aria-label="إغلاق">×</button>
+  </div>
+
+  <label class="add-label" for="addSection">القسم</label>
+  <select id="addSection" class="add-select">
+    <option value="panel-ihram">الإحرام</option>
+    <option value="panel-tawaf">الطواف</option>
+    <option value="panel-sai">السعي</option>
+    <option value="panel-nabawi">المسجد النبوي</option>
+    <optgroup label="أدعية عامة">
+      <option value="sec-adab">١. آداب الدعاء والتضرّع</option>
+      <option value="sec-quran">٢. أدعية قرآنية جامعة</option>
+      <option value="sec-istiftah">٣. دعاء استفتاح الصلاة</option>
+      <option value="sec-hajah">٤. قضاء الحاجة والكرب</option>
+      <option value="sec-istighfar">٥. الاستغفار من الذنب</option>
+      <option value="sec-ibtila">٦. عند الابتلاء أو رؤية مبتلى</option>
+      <option value="sec-sleep">٧. عند الذهاب إلى الفراش</option>
+      <option value="sec-night">٨. من استيقظ من الليل</option>
+      <option value="sec-book">٩. من كتاب «أدعية النبي ﷺ»</option>
+      <option value="sec-salawat">١٠. صيغ الصلاة على النبي ﷺ</option>
+      <option value="sec-abna">١١. دعاء الوالدين لأبنائهم</option>
+    </optgroup>
+  </select>
+
+  <label class="add-label" for="addText">النص</label>
+  <textarea id="addText" class="add-textarea" rows="6" placeholder="اكتب الدعاء هنا…"></textarea>
+  <p class="add-hint">يُحفظ للجميع ويظهر فورًا عند كل من يستخدم التطبيق، وينتقل بك مباشرة إلى القسم بعد الإضافة.</p>
+
+  <button class="add-submit" id="addSubmit" type="button">إضافة والانتقال إليه</button>
+</aside>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+// ---- shared store: Firestore when configured, localStorage fallback otherwise ----
+(function(){
+  "use strict";
+  var pill = document.getElementById('syncPill');
+  function status(cls, txt){ if (pill){ pill.className = 'sync ' + cls; pill.textContent = txt; } }
+
+  var cfg = window.FIREBASE_CONFIG;
+  var ok = cfg && cfg.apiKey && cfg.apiKey.indexOf('PASTE') === -1 && window.firebase;
+
+  if (!ok){
+    // local-only fallback
+    var K = 'umrah-companion:';
+    function get(k, d){ try { var v = localStorage.getItem(K + k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } }
+    function put(k, v){ try { localStorage.setItem(K + k, JSON.stringify(v)); } catch(e){} }
+    var duaCb = null, cntCb = null;
+    window.UmrahStore = {
+      onDuas: function(cb){ duaCb = cb; cb(get('duas', [])); },
+      addDua: function(e){ var a = get('duas', []); a.push(e); put('duas', a); if (duaCb) duaCb(a); },
+      removeDua: function(id){ var a = get('duas', []).filter(function(x){ return x.id !== id; }); put('duas', a); if (duaCb) duaCb(a); },
+      onCounters: function(cb){ cntCb = cb; cb(get('counters', {tawaf:0, sai:0})); },
+      setCounter: function(k, v){ var c = get('counters', {tawaf:0, sai:0}); c[k] = v; put('counters', c); }
+    };
+    status('off', 'بدون مزامنة (إعدادات Firebase غير مضبوطة)');
+    return;
+  }
+
+  firebase.initializeApp(cfg);
+  var db = firebase.firestore();
+  try { db.enablePersistence({ synchronizeTabs: true }).catch(function(){}); } catch(e){}
+
+  var duasRef = db.collection('duas');
+  var countersRef = db.doc('shared/counters');
+
+  window.UmrahStore = {
+    onDuas: function(cb){
+      duasRef.onSnapshot(function(snap){
+        var arr = [];
+        snap.forEach(function(d){ var x = d.data(); x.id = d.id; arr.push(x); });
+        cb(arr);
+        status('on', snap.metadata.fromCache ? 'محفوظ محليًا — سيتزامن عند الاتصال' : 'متزامن مع الجميع');
+      }, function(err){ console.error(err); status('off', 'خطأ في المزامنة'); });
+    },
+    addDua: function(e){
+      duasRef.doc(e.id).set({ sectionId: e.sectionId, text: e.text, addedAt: e.addedAt }).catch(function(err){ console.error(err); status('off', 'تعذّر الحفظ'); });
+    },
+    removeDua: function(id){
+      duasRef.doc(id).delete().catch(function(err){ console.error(err); status('off', 'تعذّر الحذف'); });
+    },
+    onCounters: function(cb){
+      countersRef.onSnapshot(function(snap){ cb(snap.exists ? snap.data() : {tawaf:0, sai:0}); },
+        function(err){ console.error(err); });
+    },
+    setCounter: function(k, v){
+      var patch = {}; patch[k] = v; patch.updatedAt = Date.now();
+      countersRef.set(patch, { merge: true }).catch(function(err){ console.error(err); });
+    }
+  };
+
+  // PWA service worker
+  if ('serviceWorker' in navigator){
+    window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- tabs (top nav) ----
+  var topTabs = document.querySelectorAll('nav.tabs button');
+  var panels = document.querySelectorAll('section.panel');
+
+  function activatePanel(target){
+    panels.forEach(function(p){ p.classList.toggle('active', p.id === target); });
+    topTabs.forEach(function(t){ t.setAttribute('aria-selected', t.dataset.target === target ? 'true' : 'false'); });
+  }
+
+  topTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      activatePanel(tab.dataset.target);
+      window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+    });
+  });
+
+  // ---- subnav: click-to-jump + "scroll-spy" highlighting, kept in one place so a click always
+  // wins the race against the scroll-position calculation instead of waiting for it to catch up.
+  // Position-based (not IntersectionObserver) so the last section stays highlighted even once
+  // it has scrolled far above the viewport (e.g. user reached the bottom of the tab).
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var subnavLinks = document.querySelectorAll('.subnav a');
+  (function(){
+    var subnavEl = document.querySelector('.subnav');
+    var tabsEl = document.querySelector('nav.tabs');
+    var jamiahPanel = document.getElementById('panel-jamiah');
+    if (!subnavEl || !tabsEl || !subnavLinks.length || !jamiahPanel) return;
+    // Height of the two stacked sticky bars once both are actually stuck to the top. Deliberately
+    // NOT read from subnavEl.getBoundingClientRect() at call time: near the very top of the tab the
+    // subnav hasn't "stuck" yet (it's still in normal flow, well below its sticky offset), so its
+    // live rect reports a much taller position than where it will end up - offsetHeight is the
+    // element's own box height and stays correct regardless of whether sticky has engaged yet.
+    function barsBottom(){
+      return tabsEl.offsetHeight + subnavEl.offsetHeight;
+    }
+    var linkById = {};
+    subnavLinks.forEach(function(l){ linkById[l.getAttribute('href').slice(1)] = l; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.subhead[id]'));
+    if (!sections.length) return;
+
+    var currentActive = null;
+    function setActive(id){
+      if (id === currentActive) return;
+      currentActive = id;
+      subnavLinks.forEach(function(l){ l.classList.toggle('active', l.getAttribute('href') === '#' + id); });
+      var activeLink = linkById[id];
+      if (activeLink){
+        var lb = activeLink.getBoundingClientRect();
+        var nb = subnavEl.getBoundingClientRect();
+        if (lb.left < nb.left || lb.right > nb.right){
+          // Always instant, never smooth: this is a secondary nicety (keep the chip in view), and
+          // running it as a *second* smooth-scroll animation at the same time as the main page's
+          // smooth scroll-to-section (below) is what was cancelling that main scroll on some
+          // browsers - two simultaneous smooth scrolls in the same frame is unreliable, one of
+          // them wins and the other is dropped. Instant removes the conflict entirely.
+          subnavEl.scrollTo({ left: subnavEl.scrollLeft + (lb.left - nb.left) - 16, behavior: 'auto' });
+        }
+      }
+    }
+
+    function triggerLine(){
+      // just below the stacked sticky bars (top tabs + subnav)
+      return subnavEl.getBoundingClientRect().bottom + 18;
+    }
+
+    function recompute(){
+      if (!jamiahPanel.classList.contains('active')) return;
+      var line = triggerLine();
+      var current = sections[0];
+      for (var i = 0; i < sections.length; i++){
+        if (sections[i].getBoundingClientRect().top <= line) current = sections[i];
+        else break;
+      }
+      setActive(current.id);
+    }
+
+    // Compute the destination ourselves and drive the scroll with window.scrollTo rather than
+    // relying on target.scrollIntoView(). scrollIntoView's landing spot depends on scroll-margin-top
+    // support and per-browser "nearest vs start" quirks; a direct, self-computed window.scrollTo is
+    // deterministic everywhere and is exactly what actually moves the page. Lands the section a few
+    // pixels *above* triggerLine() (never exactly on it) so recompute() unambiguously recognizes it
+    // as the active one the instant the scroll settles - landing exactly on the line risked a
+    // sub-pixel rounding tie that left the previous section highlighted instead.
+    function jumpTo(target){
+      var destY = window.scrollY + target.getBoundingClientRect().top - barsBottom() - 8;
+      window.scrollTo({ top: Math.max(0, destY), behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+
+    subnavLinks.forEach(function(link){
+      link.addEventListener('click', function(ev){
+        var id = link.getAttribute('href').slice(1);
+        var target = document.getElementById(id);
+        if (!target) return;
+        ev.preventDefault();
+        currentActive = id; // lock the highlight so the in-flight scroll can't be out-raced by recompute()
+        subnavLinks.forEach(function(l){ l.classList.toggle('active', l === link); });
+        jumpTo(target);
+      });
+    });
+
+    // Drive recompute() off a continuous requestAnimationFrame loop rather than 'scroll' events.
+    // Reason: this page can end up rendered inside a wrapper that scrolls an inner element instead
+    // of the window (e.g. an embedding viewer's own scroll container); 'scroll' events on window
+    // never fire in that case and the whole feature silently goes dead. getBoundingClientRect() is
+    // always viewport-relative regardless of which element is actually scrolling, so polling it via
+    // rAF works in every case. recompute() itself is O(sections) and only touches the DOM when the
+    // active id actually changes, so this costs nothing noticeable even at 60fps.
+    function loop(){
+      recompute();
+      window.requestAnimationFrame(loop);
+    }
+    window.requestAnimationFrame(loop);
+    // Belt-and-suspenders: also react instantly to scroll/resize when they do fire on window,
+    // and to a document-level capture listener that catches scrolling on any nested container too
+    // (scroll events don't bubble, but a capturing listener on an ancestor still sees them).
+    document.addEventListener('scroll', recompute, { passive: true, capture: true });
+    window.addEventListener('resize', recompute, { passive: true });
+  })();
+
+  // ---- arabic-indic digits ----
+  var digits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+  function toArabicDigits(n){
+    return String(n).split('').map(function(ch){
+      return /[0-9]/.test(ch) ? digits[+ch] : ch;
+    }).join('');
+  }
+
+  // ---- counters ----
+  function makeCounter(key, max, numEl, dotsEl, phaseEl, phaseFn){
+    var val = 0;
+
+    var dots = [];
+    for (var i = 0; i < max; i++){
+      var d = document.createElement('span');
+      dotsEl.appendChild(d);
+      dots.push(d);
+    }
+
+    function render(){
+      numEl.textContent = toArabicDigits(val);
+      dots.forEach(function(d, i){ d.classList.toggle('done', i < val); });
+      if (phaseEl) phaseEl.textContent = phaseFn(val);
+    }
+    function commit(){ render(); window.UmrahStore.setCounter(key, val); }
+
+    return {
+      inc: function(){ if (val < max){ val++; commit(); } },
+      dec: function(){ if (val > 0){ val--; commit(); } },
+      reset: function(){ val = 0; commit(); },
+      set: function(n){ n = parseInt(n, 10); if (isNaN(n) || n < 0 || n > max) n = 0; if (n !== val){ val = n; render(); } },
+      render: render
+    };
+  }
+
+  var tawafPhase = function(v){
+    if (v === 0) return 'لم يبدأ بعد';
+    if (v === 7) return 'اكتمل الطواف';
+    return 'الشوط ' + toArabicDigits(v) + ' من ٧';
+  };
+  var saiPhase = function(v){
+    if (v === 0) return 'لم يبدأ بعد';
+    if (v === 7) return 'اكتمل السعي';
+    var goingToMarwah = (v % 2 === 1);
+    return (goingToMarwah ? 'من الصفا إلى المروة' : 'من المروة إلى الصفا') + ' — شوط ' + toArabicDigits(v);
+  };
+
+  var tawaf = makeCounter('tawaf', 7,
+    document.getElementById('tawaf-num'),
+    document.getElementById('tawaf-dots'),
+    document.getElementById('tawaf-phase'),
+    tawafPhase);
+  tawaf.render();
+
+  var sai = makeCounter('sai', 7,
+    document.getElementById('sai-num'),
+    document.getElementById('sai-dots'),
+    document.getElementById('sai-phase'),
+    saiPhase);
+  sai.render();
+
+  function wireCounter(rootId, counter){
+    var root = document.getElementById(rootId);
+    root.querySelectorAll('[data-action]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var action = btn.dataset.action;
+        if (action === 'inc') counter.inc();
+        else if (action === 'dec') counter.dec();
+        else if (action === 'reset') counter.reset();
+      });
+    });
+  }
+  wireCounter('counter-tawaf', tawaf);
+  wireCounter('counter-sai', sai);
+  window.UmrahStore.onCounters(function(c){
+    if (!c) return;
+    if ('tawaf' in c) tawaf.set(c.tawaf);
+    if ('sai' in c) sai.set(c.sai);
+  });
+
+  // ---- font scale ----
+  var scaleKey = 'umrah-companion:scale';
+  var scale = 1;
+  try {
+    var s = window.localStorage.getItem(scaleKey);
+    if (s !== null) { var f = parseFloat(s); if (!isNaN(f) && f >= 0.85 && f <= 1.4) scale = f; }
+  } catch(e){}
+  function applyScale(){
+    document.documentElement.style.setProperty('--scale', String(scale));
+    try { window.localStorage.setItem(scaleKey, String(scale)); } catch(e){}
+  }
+  applyScale();
+  document.getElementById('font-inc').addEventListener('click', function(){
+    scale = Math.min(1.4, +(scale + 0.1).toFixed(2));
+    applyScale();
+  });
+  document.getElementById('font-dec').addEventListener('click', function(){
+    scale = Math.max(0.85, +(scale - 0.1).toFixed(2));
+    applyScale();
+  });
+})();
+
+// ---- manual "add a dua" feature ----
+(function(){
+  "use strict";
+  var fab = document.getElementById('addFab');
+  var overlay = document.getElementById('addOverlay');
+  var drawer = document.getElementById('addDrawer');
+  var closeBtn = document.getElementById('addClose');
+  var selectEl = document.getElementById('addSection');
+  var textEl = document.getElementById('addText');
+  var submitBtn = document.getElementById('addSubmit');
+  if (!fab || !overlay || !drawer || !closeBtn || !selectEl || !textEl || !submitBtn) return;
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  function openDrawer(){
+    overlay.hidden = false;
+    // next frame, so the 'hidden' removal and the opacity/transform transition don't collapse into one
+    window.requestAnimationFrame(function(){
+      overlay.classList.add('open');
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      window.setTimeout(function(){ textEl.focus(); }, 80);
+    });
+  }
+  function closeDrawer(){
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    window.setTimeout(function(){ overlay.hidden = true; }, reduceMotion ? 0 : 260);
+  }
+  fab.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function(ev){
+    if (ev.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+  });
+
+  // Where a new card for this section goes. Main tabs (panel-*) have no sub-structure, so append
+  // straight into the panel. A numbered subsection inside "أدعية عامة" isn't its own container -
+  // its content is just the run of siblings between its .subhead and the next one - so walk forward
+  // from the subhead until hitting the next .subhead (or the trailing .legend for the last one).
+  function insertionAnchor(sectionId){
+    if (sectionId.indexOf('panel-') === 0){
+      var panel = document.getElementById(sectionId);
+      return panel ? { parent: panel, before: null } : null;
+    }
+    var subhead = document.getElementById(sectionId);
+    if (!subhead) return null;
+    var node = subhead.nextElementSibling;
+    while (node && !node.classList.contains('subhead') && !node.classList.contains('legend')){
+      node = node.nextElementSibling;
+    }
+    return { parent: subhead.parentNode, before: node };
+  }
+
+  function buildCard(entry){
+    var card = document.createElement('article');
+    card.className = 'card just-added';
+    card.dataset.customId = entry.id;
+    var head = document.createElement('div');
+    head.className = 'card-head';
+    var title = document.createElement('span');
+    title.className = 'card-title';
+    title.textContent = 'إضافتك';
+    var badge = document.createElement('span');
+    badge.className = 'badge mawquf';
+    badge.textContent = 'من إضافتك';
+    head.appendChild(title);
+    head.appendChild(badge);
+    var body = document.createElement('p');
+    body.className = 'dua-text';
+    body.style.whiteSpace = 'pre-wrap';
+    body.textContent = entry.text;
+    var del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'card-del';
+    del.textContent = 'حذف هذه الإضافة';
+    del.addEventListener('click', function(){ removeEntry(entry.id); });
+    card.appendChild(head);
+    card.appendChild(body);
+    card.appendChild(del);
+    return card;
+  }
+
+  function renderEntry(entry){
+    var anchor = insertionAnchor(entry.sectionId);
+    if (!anchor) return null;
+    var card = buildCard(entry);
+    anchor.parent.insertBefore(card, anchor.before);
+    return card;
+  }
+
+  function removeEntry(id){
+    if (!window.confirm('حذف هذه الإضافة عند جميع المستخدمين؟')) return;
+    window.UmrahStore.removeDua(id);
+  }
+
+  function addEntry(sectionId, text){
+    var entry = {
+      id: 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+      sectionId: sectionId,
+      text: text,
+      addedAt: Date.now()
+    };
+    window.UmrahStore.addDua(entry);
+    return entry;
+  }
+
+  // full re-render from the shared list (small list, simplest correct approach)
+  function renderAll(entries){
+    document.querySelectorAll('[data-custom-id]').forEach(function(el){ el.parentNode.removeChild(el); });
+    entries.slice().sort(function(a,b){ return (a.addedAt||0) - (b.addedAt||0); }).forEach(function(e){
+      var card = renderEntry(e);
+      if (card) card.classList.remove('just-added');
+    });
+  }
+
+  // Self-contained scroll-to helper (doesn't reach into the subnav IIFE's internals): accounts for
+  // nav.tabs always, plus the sticky .subnav row too when the target lives inside "أدعية عامة".
+  function scrollToEl(el){
+    if (!el) return;
+    var tabsEl = document.querySelector('nav.tabs');
+    var subnavEl = document.querySelector('.subnav');
+    var inJamiah = !!el.closest('#panel-jamiah');
+    var bars = (tabsEl ? tabsEl.offsetHeight : 0) + (inJamiah && subnavEl ? subnavEl.offsetHeight : 0);
+    var destY = window.scrollY + el.getBoundingClientRect().top - bars - 8;
+    window.scrollTo({ top: Math.max(0, destY), behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  function goToSection(sectionId, cardEl){
+    var targetTab = sectionId.indexOf('panel-') === 0 ? sectionId : 'panel-jamiah';
+    var tabBtn = document.querySelector('nav.tabs button[data-target="' + targetTab + '"]');
+    if (tabBtn) tabBtn.click();
+    window.setTimeout(function(){ scrollToEl(cardEl); }, 130);
+  }
+
+  submitBtn.addEventListener('click', function(){
+    var text = textEl.value.trim();
+    if (!text){ textEl.focus(); return; }
+    var sectionId = selectEl.value;
+    var entry = addEntry(sectionId, text);
+    textEl.value = '';
+    closeDrawer();
+    window.setTimeout(function(){
+      var el = document.querySelector('[data-custom-id="' + entry.id + '"]');
+      if (el) el.classList.add('just-added');
+      goToSection(sectionId, el);
+    }, reduceMotion ? 120 : 380);
+  });
+
+  window.UmrahStore.onDuas(renderAll);
+})();
+</script>
+</body></html>
