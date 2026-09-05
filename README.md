@@ -1,4 +1,28 @@
-# رفيق العمرة — تطبيق ويب (PWA) على Firebase
+# رفيق العمرة — تطبيق ويب (PWA)
+
+## الكود والنشر على GitHub
+- المستودع: https://github.com/adelfouda/umrah-app
+- الرابط الشغال (GitHub Pages): https://adelfouda.github.io/umrah-app/
+- أي `push` على فرع `main` ينشر مجلد `public/` تلقائيًا عبر `.github/workflows/pages.yml`.
+
+### للتكملة من جهاز آخر
+```
+git clone https://github.com/adelfouda/umrah-app.git
+cd umrah-app
+```
+عدّل `public/index.html` ثم:
+```
+git add -A
+git commit -m "وصف التعديل"
+git push
+```
+غيّر رقم `CACHE` في `public/sw.js` (v1 → v2) عند كل تحديث كبير حتى يُحدَّث التطبيق المثبَّت فورًا.
+
+> ملاحظة: بدون إعدادات Firebase يعمل التطبيق كاملًا لكن الأدعية المضافة والعدّادات تُحفظ محليًا على كل جهاز بدون مزامنة. لتفعيل المزامنة اتبع قسم Firebase أدناه.
+
+---
+
+# النشر على Firebase (اختياري — للمزامنة بين الأجهزة)
 
 ## المحتويات
 - `public/index.html` — التطبيق كامل (ملف واحد)
