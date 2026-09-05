@@ -5,6 +5,18 @@
 - الرابط الشغال (GitHub Pages): https://adelfouda.github.io/umrah-app/
 - أي `push` على فرع `main` ينشر مجلد `public/` تلقائيًا عبر `.github/workflows/pages.yml`.
 
+## مشروع Firebase (مُفعَّل بالفعل — المزامنة تعمل)
+- Project ID: `umrah-companion-adf2026`
+- Firestore: مفعّل (منطقة me-central1) وقواعد الحماية مرفوعة من `firestore.rules`.
+- رابط Firebase Hosting (نسخة مطابقة، متزامنة مع نفس القاعدة): https://umrah-companion-adf2026.web.app
+- لوحة التحكم: https://console.firebase.google.com/project/umrah-companion-adf2026/overview
+- `public/firebase-config.js` فيه القيم الحقيقية بالفعل — لا حاجة لتعديله.
+- عند تعديل `public/index.html` أو `firestore.rules` وتشغيل:
+  ```
+  npx -y firebase-tools deploy --only firestore:rules,hosting --project umrah-companion-adf2026
+  ```
+  يتحدث رابط Firebase Hosting فورًا. الرابطان (GitHub Pages وFirebase Hosting) يقرآن نفس بيانات Firestore، فأي إضافة دعاء أو تغيير عدّاد من أحدهما يظهر في الآخر مباشرة.
+
 ### للتكملة من جهاز آخر
 ```
 git clone https://github.com/adelfouda/umrah-app.git
