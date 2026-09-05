@@ -1,3 +1,7 @@
 {
-  "projects": { "default": "PASTE_PROJECT_ID" }
+  "projects": {
+    "default": "umrah-companion-adf2026"
+  },
+  "targets": {},
+  "etags": {}
 }
