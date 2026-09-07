@@ -1387,6 +1387,7 @@
 
   <label class="add-label" for="addSection">القسم</label>
   <select id="addSection" class="add-select">
+    <option value="__new__">＋ إنشاء قسم جديد…</option>
     <option value="panel-ihram">الإحرام</option>
     <option value="panel-tawaf">الطواف</option>
     <option value="panel-sai">السعي</option>
@@ -1404,7 +1405,6 @@
       <option value="sec-salawat">١٠. صيغ الصلاة على النبي ﷺ</option>
       <option value="sec-abna">١١. دعاء الوالدين لأبنائهم</option>
     </optgroup>
-    <option value="__new__">＋ إنشاء قسم جديد…</option>
   </select>
 
   <div id="addNewSectionWrap" hidden>
@@ -1742,11 +1742,13 @@
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  selectEl.addEventListener('change', function(){
+  function syncNewSectionVisibility(focusIt){
     var isNew = selectEl.value === '__new__';
     newSectionWrap.hidden = !isNew;
-    if (isNew) window.setTimeout(function(){ newSectionTitleEl.focus(); }, 0);
-  });
+    if (isNew && focusIt) window.setTimeout(function(){ newSectionTitleEl.focus(); }, 0);
+  }
+  selectEl.addEventListener('change', function(){ syncNewSectionVisibility(true); });
+  syncNewSectionVisibility(false); // "＋ إنشاء قسم جديد…" is the first option, so it's selected by default
 
 
   function openDrawer(){
@@ -1756,7 +1758,7 @@
       overlay.classList.add('open');
       drawer.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
-      window.setTimeout(function(){ textEl.focus(); }, 80);
+      window.setTimeout(function(){ (newSectionWrap.hidden ? textEl : newSectionTitleEl).focus(); }, 80);
     });
   }
   function closeDrawer(){
@@ -1800,7 +1802,7 @@
     if (customOptgroup) return customOptgroup;
     customOptgroup = document.createElement('optgroup');
     customOptgroup.label = 'أقسام أضفتَها';
-    selectEl.insertBefore(customOptgroup, selectEl.lastElementChild);
+    selectEl.appendChild(customOptgroup); // "أدعية عامة" is now the last static group, so appending trails it
     return customOptgroup;
   }
 
