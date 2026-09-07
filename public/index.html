@@ -1804,13 +1804,24 @@
     return customOptgroup;
   }
 
+  // Arabic-indic digits, so a user-added section continues the same numbering style (١، ٢…) as the
+  // existing "أدعية عامة" subsections instead of switching to Western digits partway down the list.
+  var arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+  function toArabicDigits(n){
+    return String(n).split('').map(function(ch){ return /[0-9]/.test(ch) ? arabicDigits[+ch] : ch; }).join('');
+  }
+
   function renderSection(entry){
     if (!jamiahPanel || document.getElementById(entry.id)) return;
+
+    // Continue the running count (…, ١١) rather than restarting or using a generic marker, so a
+    // user-added section reads as section ١٢, ١٣, … in order of when it was created.
+    var number = toArabicDigits(jamiahPanel.querySelectorAll('.subhead').length + 1);
 
     var subhead = document.createElement('div');
     subhead.className = 'subhead';
     subhead.id = entry.id;
-    var n = document.createElement('span'); n.className = 'n'; n.textContent = '＋';
+    var n = document.createElement('span'); n.className = 'n'; n.textContent = number;
     var h2 = document.createElement('h2'); h2.textContent = entry.title;
     var line = document.createElement('span'); line.className = 'line';
     subhead.appendChild(n); subhead.appendChild(h2); subhead.appendChild(line);
@@ -1826,7 +1837,7 @@
 
     var opt = document.createElement('option');
     opt.value = entry.id;
-    opt.textContent = entry.title;
+    opt.textContent = number + '. ' + entry.title;
     ensureCustomOptgroup().appendChild(opt);
   }
 
