@@ -620,7 +620,7 @@
     color:var(--ink-soft);
     margin:14px 0 6px;
   }
-  .add-select, .add-textarea{
+  .add-select, .add-textarea, .add-input{
     width:100%;
     border:1px solid var(--border);
     border-radius:12px;
@@ -638,7 +638,7 @@
     resize:vertical;
     min-height:130px;
   }
-  .add-select:focus, .add-textarea:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+  .add-select:focus, .add-textarea:focus, .add-input:focus{ outline:2px solid var(--gold); outline-offset:1px; }
 
   .add-submit{
     margin-top:18px;
@@ -1404,7 +1404,13 @@
       <option value="sec-salawat">١٠. صيغ الصلاة على النبي ﷺ</option>
       <option value="sec-abna">١١. دعاء الوالدين لأبنائهم</option>
     </optgroup>
+    <option value="__new__">＋ إنشاء قسم جديد…</option>
   </select>
+
+  <div id="addNewSectionWrap" hidden>
+    <label class="add-label" for="addNewSectionTitle">اسم القسم الجديد</label>
+    <input type="text" id="addNewSectionTitle" class="add-input" placeholder="مثال: أدعية السفر">
+  </div>
 
   <label class="add-label" for="addText">النص</label>
   <textarea id="addText" class="add-textarea" rows="6" placeholder="اكتب الدعاء هنا…"></textarea>
@@ -1431,11 +1437,13 @@
     var K = 'umrah-companion:';
     function get(k, d){ try { var v = localStorage.getItem(K + k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } }
     function put(k, v){ try { localStorage.setItem(K + k, JSON.stringify(v)); } catch(e){} }
-    var duaCb = null, cntCb = null;
+    var duaCb = null, cntCb = null, secCb = null;
     window.UmrahStore = {
       onDuas: function(cb){ duaCb = cb; cb(get('duas', [])); },
       addDua: function(e){ var a = get('duas', []); a.push(e); put('duas', a); if (duaCb) duaCb(a); },
       removeDua: function(id){ var a = get('duas', []).filter(function(x){ return x.id !== id; }); put('duas', a); if (duaCb) duaCb(a); },
+      onSections: function(cb){ secCb = cb; cb(get('sections', [])); },
+      addSection: function(e){ var a = get('sections', []); a.push(e); put('sections', a); if (secCb) secCb(a); },
       onCounters: function(cb){ cntCb = cb; cb(get('counters', {tawaf:0, sai:0})); },
       setCounter: function(k, v){ var c = get('counters', {tawaf:0, sai:0}); c[k] = v; put('counters', c); }
     };
@@ -1448,6 +1456,7 @@
   try { db.enablePersistence({ synchronizeTabs: true }).catch(function(){}); } catch(e){}
 
   var duasRef = db.collection('duas');
+  var sectionsRef = db.collection('sections');
   var countersRef = db.doc('shared/counters');
 
   window.UmrahStore = {
@@ -1464,6 +1473,16 @@
     },
     removeDua: function(id){
       duasRef.doc(id).delete().catch(function(err){ console.error(err); status('off', 'تعذّر الحذف'); });
+    },
+    onSections: function(cb){
+      sectionsRef.onSnapshot(function(snap){
+        var arr = [];
+        snap.forEach(function(d){ var x = d.data(); x.id = d.id; arr.push(x); });
+        cb(arr);
+      }, function(err){ console.error(err); });
+    },
+    addSection: function(e){
+      sectionsRef.doc(e.id).set({ title: e.title, addedAt: e.addedAt }).catch(function(err){ console.error(err); status('off', 'تعذّر الحفظ'); });
     },
     onCounters: function(cb){
       countersRef.onSnapshot(function(snap){ cb(snap.exists ? snap.data() : {tawaf:0, sai:0}); },
@@ -1717,9 +1736,17 @@
   var selectEl = document.getElementById('addSection');
   var textEl = document.getElementById('addText');
   var submitBtn = document.getElementById('addSubmit');
-  if (!fab || !overlay || !drawer || !closeBtn || !selectEl || !textEl || !submitBtn) return;
+  var newSectionWrap = document.getElementById('addNewSectionWrap');
+  var newSectionTitleEl = document.getElementById('addNewSectionTitle');
+  if (!fab || !overlay || !drawer || !closeBtn || !selectEl || !textEl || !submitBtn || !newSectionWrap || !newSectionTitleEl) return;
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  selectEl.addEventListener('change', function(){
+    var isNew = selectEl.value === '__new__';
+    newSectionWrap.hidden = !isNew;
+    if (isNew) window.setTimeout(function(){ newSectionTitleEl.focus(); }, 0);
+  });
 
 
   function openDrawer(){
@@ -1761,6 +1788,51 @@
       node = node.nextElementSibling;
     }
     return { parent: subhead.parentNode, before: node };
+  }
+
+  // ---- user-created sections (rendered inside "أدعية عامة", right before the legend) ----
+  var jamiahPanel = document.getElementById('panel-jamiah');
+  var jamiahLegend = jamiahPanel ? jamiahPanel.querySelector('.legend') : null;
+  var jamiahSubnav = jamiahPanel ? jamiahPanel.querySelector('.subnav') : null;
+  var customOptgroup = null;
+
+  function ensureCustomOptgroup(){
+    if (customOptgroup) return customOptgroup;
+    customOptgroup = document.createElement('optgroup');
+    customOptgroup.label = 'أقسام أضفتَها';
+    selectEl.insertBefore(customOptgroup, selectEl.lastElementChild);
+    return customOptgroup;
+  }
+
+  function renderSection(entry){
+    if (!jamiahPanel || document.getElementById(entry.id)) return;
+
+    var subhead = document.createElement('div');
+    subhead.className = 'subhead';
+    subhead.id = entry.id;
+    var n = document.createElement('span'); n.className = 'n'; n.textContent = '＋';
+    var h2 = document.createElement('h2'); h2.textContent = entry.title;
+    var line = document.createElement('span'); line.className = 'line';
+    subhead.appendChild(n); subhead.appendChild(h2); subhead.appendChild(line);
+    jamiahPanel.insertBefore(subhead, jamiahLegend);
+
+    if (jamiahSubnav){
+      var a = document.createElement('a');
+      a.href = '#' + entry.id;
+      a.textContent = entry.title;
+      a.addEventListener('click', function(ev){ ev.preventDefault(); scrollToEl(subhead); });
+      jamiahSubnav.appendChild(a);
+    }
+
+    var opt = document.createElement('option');
+    opt.value = entry.id;
+    opt.textContent = entry.title;
+    ensureCustomOptgroup().appendChild(opt);
+  }
+
+  function renderAllSections(entries){
+    entries.slice().sort(function(a,b){ return (a.addedAt||0) - (b.addedAt||0); }).forEach(renderSection);
+    renderAll(lastDuas); // some duas may have been waiting on a section that just appeared
   }
 
   function buildCard(entry){
@@ -1848,6 +1920,19 @@
     var text = textEl.value.trim();
     if (!text){ textEl.focus(); return; }
     var sectionId = selectEl.value;
+
+    if (sectionId === '__new__'){
+      var title = newSectionTitleEl.value.trim();
+      if (!title){ newSectionTitleEl.focus(); return; }
+      sectionId = 'usec' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+      var sectionEntry = { id: sectionId, title: title, addedAt: Date.now() };
+      renderSection(sectionEntry); // render right away so the dua card below has somewhere to land
+      window.UmrahStore.addSection(sectionEntry);
+      selectEl.value = sectionId;
+      newSectionTitleEl.value = '';
+      newSectionWrap.hidden = true;
+    }
+
     var entry = addEntry(sectionId, text);
     textEl.value = '';
     closeDrawer();
@@ -1858,7 +1943,9 @@
     }, reduceMotion ? 120 : 380);
   });
 
-  window.UmrahStore.onDuas(renderAll);
+  var lastDuas = [];
+  window.UmrahStore.onDuas(function(entries){ lastDuas = entries; renderAll(entries); });
+  window.UmrahStore.onSections(renderAllSections);
 })();
 
 // ---- install as app ----
