@@ -459,10 +459,45 @@
     background:var(--border);
   }
   .subhead-actions{
-    display:flex;
+    display:none; /* shown only once signed in as admin — see body.is-admin below */
     gap:2px;
     flex:none;
   }
+  body.is-admin .subhead-actions{ display:flex; }
+
+  .admin-btn{
+    position:fixed;
+    top:34px;
+    left:10px;
+    z-index:40;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--ink-faint);
+    font-size:.85rem;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    cursor:pointer;
+  }
+  body.is-admin .admin-btn{ background:var(--teal-soft); border-color:var(--teal-soft-border); }
+
+  .admin-hidden-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:8px 0;
+    border-bottom:1px solid var(--border);
+    font-size:.85rem;
+    color:var(--ink);
+  }
+  .admin-hidden-row:last-child{ border-bottom:none; }
+  #adminError:not(:empty){ color:var(--attn); }
   .subhead-btn{
     border:none;
     background:none;
@@ -1393,6 +1428,31 @@
   <button id="font-inc" aria-label="تكبير الخط">أ+</button>
 </div>
 
+<button class="admin-btn" id="adminBtn" aria-haspopup="dialog" aria-controls="adminDrawer" aria-label="دخول المشرف" title="دخول المشرف">🔑</button>
+<div class="add-overlay" id="adminOverlay" hidden></div>
+<aside class="add-drawer" id="adminDrawer" role="dialog" aria-modal="true" aria-label="لوحة المشرف" aria-hidden="true">
+  <div class="add-drawer-head">
+    <h2>لوحة المشرف</h2>
+    <button class="add-close" id="adminClose" aria-label="إغلاق">×</button>
+  </div>
+
+  <div id="adminLoggedOut">
+    <label class="add-label" for="adminEmail">البريد الإلكتروني</label>
+    <input type="email" id="adminEmail" class="add-input" autocomplete="username">
+    <label class="add-label" for="adminPassword">كلمة المرور</label>
+    <input type="password" id="adminPassword" class="add-input" autocomplete="current-password">
+    <p class="add-hint" id="adminError"></p>
+    <button class="add-submit" id="adminSignIn" type="button">دخول</button>
+  </div>
+
+  <div id="adminLoggedIn" hidden>
+    <p class="add-hint">مسجَّل الدخول كمشرف — أزرار التعديل والإخفاء ظاهرة الآن بجانب كل قسم.</p>
+    <button class="add-submit" id="adminSignOut" type="button">تسجيل الخروج</button>
+    <label class="add-label">الأقسام المخفية</label>
+    <div id="adminHiddenList"></div>
+  </div>
+</aside>
+
 <button class="add-fab" id="addFab" aria-haspopup="dialog" aria-controls="addDrawer" aria-label="إضافة دعاء">+</button>
 <div class="add-overlay" id="addOverlay" hidden></div>
 <aside class="add-drawer" id="addDrawer" role="dialog" aria-modal="true" aria-label="إضافة دعاء" aria-hidden="true">
@@ -1437,6 +1497,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.4/firebase-auth-compat.js"></script>
 <script src="firebase-config.js"></script>
 <script>
 // ---- shared store: Firestore when configured, localStorage fallback otherwise ----
@@ -1467,7 +1528,20 @@
       },
       deleteSection: function(id){ var a = get('sections', []).filter(function(x){ return x.id !== id; }); put('sections', a); if (secCb) secCb(a); },
       onCounters: function(cb){ cntCb = cb; cb(get('counters', {tawaf:0, sai:0})); },
-      setCounter: function(k, v){ var c = get('counters', {tawaf:0, sai:0}); c[k] = v; put('counters', c); }
+      setCounter: function(k, v){ var c = get('counters', {tawaf:0, sai:0}); c[k] = v; put('counters', c); },
+      // بدون Firebase الحقيقي لا يوجد حساب مشرف حقيقي، فيظل الجميع "مستخدمًا عاديًا" دائمًا
+      onAuth: function(cb){ cb(false, null); },
+      signIn: function(){ return Promise.reject(new Error('تسجيل الدخول غير متاح بدون إعدادات Firebase')); },
+      signOut: function(){ return Promise.resolve(); },
+      onBuiltinSections: function(cb){ cb(get('builtinSections', { overrides: {}, hidden: {} })); },
+      setBuiltinTitle: function(id, title){
+        var d = get('builtinSections', { overrides: {}, hidden: {} });
+        d.overrides[id] = title; put('builtinSections', d);
+      },
+      setBuiltinHidden: function(id, hidden){
+        var d = get('builtinSections', { overrides: {}, hidden: {} });
+        d.hidden[id] = hidden; put('builtinSections', d);
+      }
     };
     status('off', 'بدون مزامنة (إعدادات Firebase غير مضبوطة)');
     return;
@@ -1477,9 +1551,11 @@
   var db = firebase.firestore();
   try { db.enablePersistence({ synchronizeTabs: true }).catch(function(){}); } catch(e){}
 
+  var auth = firebase.auth();
   var duasRef = db.collection('duas');
   var sectionsRef = db.collection('sections');
   var countersRef = db.doc('shared/counters');
+  var builtinRef = db.doc('shared/builtinSections');
 
   window.UmrahStore = {
     onDuas: function(cb){
@@ -1511,6 +1587,24 @@
     },
     deleteSection: function(id){
       sectionsRef.doc(id).delete().catch(function(err){ console.error(err); status('off', 'تعذّر الحذف'); });
+    },
+    onAuth: function(cb){
+      auth.onAuthStateChanged(function(user){ cb(!!user, user); });
+    },
+    signIn: function(email, password){ return auth.signInWithEmailAndPassword(email, password); },
+    signOut: function(){ return auth.signOut(); },
+    onBuiltinSections: function(cb){
+      builtinRef.onSnapshot(function(snap){
+        cb(snap.exists ? snap.data() : { overrides: {}, hidden: {} });
+      }, function(err){ console.error(err); });
+    },
+    setBuiltinTitle: function(id, title){
+      var patch = {}; patch['overrides.' + id] = title;
+      builtinRef.set(patch, { merge: true }).catch(function(err){ console.error(err); status('off', 'تعذّر الحفظ'); });
+    },
+    setBuiltinHidden: function(id, hidden){
+      var patch = {}; patch['hidden.' + id] = hidden;
+      builtinRef.set(patch, { merge: true }).catch(function(err){ console.error(err); status('off', 'تعذّر الحفظ'); });
     },
     onCounters: function(cb){
       countersRef.onSnapshot(function(snap){ cb(snap.exists ? snap.data() : {tawaf:0, sai:0}); },
@@ -1857,12 +1951,14 @@
     window.UmrahStore.deleteSection(id);
   }
 
+  // Works for both custom and built-in subheads: the link lookup is by href (every subnav link has
+  // one), not the data-attribute that only custom sections carry.
   function applyTitleUpdate(id, title){
     var subhead = document.getElementById(id);
     if (!subhead) return;
     subhead.querySelector('h2').textContent = title;
     var num = subhead.dataset.num || '';
-    var link = jamiahSubnav && jamiahSubnav.querySelector('[data-custom-section-id="' + id + '"]');
+    var link = jamiahSubnav && jamiahSubnav.querySelector('a[href="#' + id + '"]');
     if (link) link.textContent = title;
     var opt = selectEl.querySelector('option[value="' + id + '"]');
     if (opt) opt.textContent = (num ? num + '. ' : '') + title;
@@ -1873,7 +1969,7 @@
   function removeSectionDom(id){
     var subhead = document.getElementById(id);
     if (subhead) subhead.parentNode.removeChild(subhead);
-    var link = jamiahSubnav && jamiahSubnav.querySelector('[data-custom-section-id="' + id + '"]');
+    var link = jamiahSubnav && jamiahSubnav.querySelector('a[href="#' + id + '"]');
     if (link) link.parentNode.removeChild(link);
     var opt = selectEl.querySelector('option[value="' + id + '"]');
     if (opt) opt.parentNode.removeChild(opt);
@@ -1881,6 +1977,29 @@
       customOptgroup.parentNode.removeChild(customOptgroup);
       customOptgroup = null;
     }
+  }
+
+  // Nodes belonging visually to one subsection: the subhead itself plus every sibling up to (not
+  // including) the next subhead or the trailing legend — the same run insertionAnchor() inserts
+  // dua cards into, so hiding it hides its cards too without touching anything else.
+  function sectionRangeNodes(subhead){
+    var nodes = [subhead];
+    var node = subhead.nextElementSibling;
+    while (node && !node.classList.contains('subhead') && !node.classList.contains('legend')){
+      nodes.push(node);
+      node = node.nextElementSibling;
+    }
+    return nodes;
+  }
+
+  function setSectionHiddenDom(id, hidden){
+    var subhead = document.getElementById(id);
+    if (!subhead) return;
+    sectionRangeNodes(subhead).forEach(function(el){ el.hidden = hidden; });
+    var link = jamiahSubnav && jamiahSubnav.querySelector('a[href="#' + id + '"]');
+    if (link) link.hidden = hidden;
+    var opt = selectEl.querySelector('option[value="' + id + '"]');
+    if (opt) opt.hidden = hidden;
   }
 
   function renderSection(entry){
@@ -1946,6 +2065,149 @@
 
     renderAll(lastDuas); // some duas may have been waiting on a section that just appeared
   }
+
+  // ---- admin: rename/hide the 11 built-in sections (their content is hardcoded HTML, not a
+  // database row, so "delete" here means hide — the admin can always bring it back) ----
+  var builtinSectionIds = ['sec-adab', 'sec-quran', 'sec-istiftah', 'sec-hajah', 'sec-istighfar',
+    'sec-ibtila', 'sec-sleep', 'sec-night', 'sec-book', 'sec-salawat', 'sec-abna'];
+  var builtinHidden = {};
+
+  function renameBuiltinSection(id, currentTitle){
+    var title = window.prompt('اسم القسم الجديد:', currentTitle);
+    if (title === null) return;
+    title = title.trim();
+    if (!title || title === currentTitle) return;
+    applyTitleUpdate(id, title);
+    window.UmrahStore.setBuiltinTitle(id, title);
+  }
+
+  function hideBuiltinSection(id){
+    var subhead = document.getElementById(id);
+    var title = subhead ? subhead.querySelector('h2').textContent : id;
+    if (!window.confirm('إخفاء قسم «' + title + '» عن جميع المستخدمين؟ يمكنك إظهاره لاحقًا من لوحة المشرف.')) return;
+    setSectionHiddenDom(id, true);
+    builtinHidden[id] = true;
+    window.UmrahStore.setBuiltinHidden(id, true);
+    refreshAdminHiddenList();
+  }
+
+  function showBuiltinSection(id){
+    setSectionHiddenDom(id, false);
+    builtinHidden[id] = false;
+    window.UmrahStore.setBuiltinHidden(id, false);
+    refreshAdminHiddenList();
+  }
+
+  function addBuiltinActions(){
+    builtinSectionIds.forEach(function(id){
+      var subhead = document.getElementById(id);
+      if (!subhead || subhead.querySelector('.subhead-actions')) return;
+      var nEl = subhead.querySelector('.n');
+      subhead.dataset.num = nEl ? nEl.textContent : '';
+
+      var actions = document.createElement('span'); actions.className = 'subhead-actions';
+      var renameBtn = document.createElement('button');
+      renameBtn.type = 'button'; renameBtn.className = 'subhead-btn subhead-rename';
+      renameBtn.title = 'إعادة تسمية القسم'; renameBtn.setAttribute('aria-label', 'إعادة تسمية القسم');
+      renameBtn.textContent = '✏️'; renameBtn.dataset.title = subhead.querySelector('h2').textContent;
+      renameBtn.addEventListener('click', function(){ renameBuiltinSection(id, renameBtn.dataset.title); });
+
+      var hideBtn = document.createElement('button');
+      hideBtn.type = 'button'; hideBtn.className = 'subhead-btn subhead-hide-section';
+      hideBtn.title = 'إخفاء القسم'; hideBtn.setAttribute('aria-label', 'إخفاء القسم');
+      hideBtn.textContent = '🙈';
+      hideBtn.addEventListener('click', function(){ hideBuiltinSection(id); });
+
+      actions.appendChild(renameBtn); actions.appendChild(hideBtn);
+      subhead.appendChild(actions);
+    });
+  }
+
+  function applyBuiltinSectionsSnapshot(data){
+    var overrides = (data && data.overrides) || {};
+    var hidden = (data && data.hidden) || {};
+    Object.keys(overrides).forEach(function(id){ applyTitleUpdate(id, overrides[id]); });
+    builtinSectionIds.forEach(function(id){ setSectionHiddenDom(id, !!hidden[id]); });
+    builtinHidden = hidden;
+    refreshAdminHiddenList();
+  }
+
+  function refreshAdminHiddenList(){
+    var list = document.getElementById('adminHiddenList');
+    if (!list) return;
+    list.innerHTML = '';
+    var ids = Object.keys(builtinHidden).filter(function(id){ return builtinHidden[id]; });
+    if (!ids.length){
+      var p = document.createElement('p'); p.className = 'add-hint'; p.textContent = 'لا توجد أقسام مخفية حاليًا.';
+      list.appendChild(p);
+      return;
+    }
+    ids.forEach(function(id){
+      var subhead = document.getElementById(id);
+      var title = subhead ? subhead.querySelector('h2').textContent : id;
+      var row = document.createElement('div'); row.className = 'admin-hidden-row';
+      var span = document.createElement('span'); span.textContent = title;
+      var showBtn = document.createElement('button');
+      showBtn.type = 'button'; showBtn.className = 'card-del'; showBtn.textContent = 'إظهار';
+      showBtn.addEventListener('click', function(){ showBuiltinSection(id); });
+      row.appendChild(span); row.appendChild(showBtn);
+      list.appendChild(row);
+    });
+  }
+
+  addBuiltinActions();
+
+  // ---- admin sign-in drawer ----
+  var adminBtn = document.getElementById('adminBtn');
+  var adminOverlay = document.getElementById('adminOverlay');
+  var adminDrawer = document.getElementById('adminDrawer');
+  var adminClose = document.getElementById('adminClose');
+  var adminLoggedOut = document.getElementById('adminLoggedOut');
+  var adminLoggedIn = document.getElementById('adminLoggedIn');
+  var adminEmail = document.getElementById('adminEmail');
+  var adminPassword = document.getElementById('adminPassword');
+  var adminError = document.getElementById('adminError');
+  var adminSignInBtn = document.getElementById('adminSignIn');
+  var adminSignOutBtn = document.getElementById('adminSignOut');
+
+  if (adminBtn && adminOverlay && adminDrawer){
+    function openAdminDrawer(){
+      adminOverlay.hidden = false;
+      window.requestAnimationFrame(function(){
+        adminOverlay.classList.add('open');
+        adminDrawer.classList.add('open');
+        adminDrawer.setAttribute('aria-hidden', 'false');
+      });
+    }
+    function closeAdminDrawer(){
+      adminOverlay.classList.remove('open');
+      adminDrawer.classList.remove('open');
+      adminDrawer.setAttribute('aria-hidden', 'true');
+      window.setTimeout(function(){ adminOverlay.hidden = true; }, reduceMotion ? 0 : 260);
+    }
+    adminBtn.addEventListener('click', openAdminDrawer);
+    if (adminClose) adminClose.addEventListener('click', closeAdminDrawer);
+    adminOverlay.addEventListener('click', closeAdminDrawer);
+
+    if (adminSignInBtn) adminSignInBtn.addEventListener('click', function(){
+      if (adminError) adminError.textContent = '';
+      window.UmrahStore.signIn(adminEmail.value.trim(), adminPassword.value).then(function(){
+        adminPassword.value = '';
+      }).catch(function(){
+        if (adminError) adminError.textContent = 'تعذّر الدخول: تحقّق من البريد وكلمة المرور.';
+      });
+    });
+    if (adminSignOutBtn) adminSignOutBtn.addEventListener('click', function(){ window.UmrahStore.signOut(); });
+  }
+
+  function setAdminState(isAdmin){
+    document.body.classList.toggle('is-admin', isAdmin);
+    if (adminLoggedOut) adminLoggedOut.hidden = isAdmin;
+    if (adminLoggedIn) adminLoggedIn.hidden = !isAdmin;
+    if (isAdmin) refreshAdminHiddenList();
+  }
+  window.UmrahStore.onAuth(setAdminState);
+  window.UmrahStore.onBuiltinSections(applyBuiltinSectionsSnapshot);
 
   function buildCard(entry){
     var card = document.createElement('article');
