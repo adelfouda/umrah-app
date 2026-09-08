@@ -1,0 +1,21 @@
+name: Deploy to Firebase (Hosting + Firestore rules)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Write Firebase service account key
+        run: echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_UMRAH_COMPANION_ADF2026 }}' > "$RUNNER_TEMP/firebase-service-account.json"
+      - name: Deploy to Firebase Hosting + Firestore rules
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-service-account.json
+        run: npx -y firebase-tools deploy --only firestore:rules,hosting --project umrah-companion-adf2026 --non-interactive

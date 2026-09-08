@@ -12,11 +12,12 @@
 - الرابط القديم لا يزال يعمل أيضًا (نفس المزامنة): https://umrah-companion-adf2026.web.app
 - لوحة التحكم: https://console.firebase.google.com/project/umrah-companion-adf2026/overview
 - `public/firebase-config.js` فيه القيم الحقيقية بالفعل — لا حاجة لتعديله.
-- عند تعديل `public/index.html` أو `firestore.rules` وتشغيل:
+- **النشر على Firebase Hosting تلقائي أيضًا:** أي `push` على `main` ينشر الاستضافة وقواعد Firestore معًا عبر `.github/workflows/firebase-deploy.yml`، بشرط وجود الـ Secret `FIREBASE_SERVICE_ACCOUNT_UMRAH_COMPANION_ADF2026` في إعدادات المستودع (GitHub → Settings → Secrets and variables → Actions) — قيمته ملف JSON لمفتاح خدمة يُنشأ من Firebase Console → Project settings → Service accounts → Generate new private key.
+- لو الـ Secret مش موجود أو الـ workflow فشل، يمكن النشر يدويًا:
   ```
   npx -y firebase-tools deploy --only firestore:rules,hosting --project umrah-companion-adf2026
   ```
-  يتحدث رابط Firebase Hosting فورًا. الرابطان (GitHub Pages وFirebase Hosting) يقرآن نفس بيانات Firestore، فأي إضافة دعاء أو تغيير عدّاد من أحدهما يظهر في الآخر مباشرة.
+  الرابطان (GitHub Pages وFirebase Hosting) يقرآن نفس بيانات Firestore، فأي إضافة دعاء أو تغيير عدّاد من أحدهما يظهر في الآخر مباشرة.
 
 ### للتكملة من جهاز آخر
 ```
