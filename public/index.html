@@ -458,6 +458,22 @@
     height:1px;
     background:var(--border);
   }
+  .subhead-actions{
+    display:flex;
+    gap:2px;
+    flex:none;
+  }
+  .subhead-btn{
+    border:none;
+    background:none;
+    color:var(--ink-faint);
+    font-size:.95rem;
+    line-height:1;
+    padding:5px;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  .subhead-btn:hover{ background:var(--surface-2); color:var(--ink-soft); }
 
   .source-note{
     font-size:.82rem;
@@ -1444,6 +1460,12 @@
       removeDua: function(id){ var a = get('duas', []).filter(function(x){ return x.id !== id; }); put('duas', a); if (duaCb) duaCb(a); },
       onSections: function(cb){ secCb = cb; cb(get('sections', [])); },
       addSection: function(e){ var a = get('sections', []); a.push(e); put('sections', a); if (secCb) secCb(a); },
+      updateSectionTitle: function(id, title){
+        var a = get('sections', []);
+        a.forEach(function(x){ if (x.id === id) x.title = title; });
+        put('sections', a); if (secCb) secCb(a);
+      },
+      deleteSection: function(id){ var a = get('sections', []).filter(function(x){ return x.id !== id; }); put('sections', a); if (secCb) secCb(a); },
       onCounters: function(cb){ cntCb = cb; cb(get('counters', {tawaf:0, sai:0})); },
       setCounter: function(k, v){ var c = get('counters', {tawaf:0, sai:0}); c[k] = v; put('counters', c); }
     };
@@ -1483,6 +1505,12 @@
     },
     addSection: function(e){
       sectionsRef.doc(e.id).set({ title: e.title, addedAt: e.addedAt }).catch(function(err){ console.error(err); status('off', 'تعذّر الحفظ'); });
+    },
+    updateSectionTitle: function(id, title){
+      sectionsRef.doc(id).update({ title: title }).catch(function(err){ console.error(err); status('off', 'تعذّر الحفظ'); });
+    },
+    deleteSection: function(id){
+      sectionsRef.doc(id).delete().catch(function(err){ console.error(err); status('off', 'تعذّر الحذف'); });
     },
     onCounters: function(cb){
       countersRef.onSnapshot(function(snap){ cb(snap.exists ? snap.data() : {tawaf:0, sai:0}); },
@@ -1813,6 +1841,48 @@
     return String(n).split('').map(function(ch){ return /[0-9]/.test(ch) ? arabicDigits[+ch] : ch; }).join('');
   }
 
+  function renameSection(id, currentTitle){
+    var title = window.prompt('اسم القسم الجديد:', currentTitle);
+    if (title === null) return;
+    title = title.trim();
+    if (!title || title === currentTitle) return;
+    applyTitleUpdate(id, title);
+    window.UmrahStore.updateSectionTitle(id, title);
+  }
+
+  function deleteSection(id){
+    if (!window.confirm('حذف هذا القسم وكل الأدعية بداخله عند جميع المستخدمين؟')) return;
+    lastDuas.filter(function(d){ return d.sectionId === id; }).forEach(function(d){ window.UmrahStore.removeDua(d.id); });
+    removeSectionDom(id);
+    window.UmrahStore.deleteSection(id);
+  }
+
+  function applyTitleUpdate(id, title){
+    var subhead = document.getElementById(id);
+    if (!subhead) return;
+    subhead.querySelector('h2').textContent = title;
+    var num = subhead.dataset.num || '';
+    var link = jamiahSubnav && jamiahSubnav.querySelector('[data-custom-section-id="' + id + '"]');
+    if (link) link.textContent = title;
+    var opt = selectEl.querySelector('option[value="' + id + '"]');
+    if (opt) opt.textContent = (num ? num + '. ' : '') + title;
+    var renameBtn = subhead.querySelector('.subhead-rename');
+    if (renameBtn) renameBtn.dataset.title = title;
+  }
+
+  function removeSectionDom(id){
+    var subhead = document.getElementById(id);
+    if (subhead) subhead.parentNode.removeChild(subhead);
+    var link = jamiahSubnav && jamiahSubnav.querySelector('[data-custom-section-id="' + id + '"]');
+    if (link) link.parentNode.removeChild(link);
+    var opt = selectEl.querySelector('option[value="' + id + '"]');
+    if (opt) opt.parentNode.removeChild(opt);
+    if (customOptgroup && !customOptgroup.children.length){
+      customOptgroup.parentNode.removeChild(customOptgroup);
+      customOptgroup = null;
+    }
+  }
+
   function renderSection(entry){
     if (!jamiahPanel || document.getElementById(entry.id)) return;
 
@@ -1823,16 +1893,33 @@
     var subhead = document.createElement('div');
     subhead.className = 'subhead';
     subhead.id = entry.id;
+    subhead.dataset.customSectionId = entry.id;
+    subhead.dataset.num = number;
     var n = document.createElement('span'); n.className = 'n'; n.textContent = number;
     var h2 = document.createElement('h2'); h2.textContent = entry.title;
     var line = document.createElement('span'); line.className = 'line';
-    subhead.appendChild(n); subhead.appendChild(h2); subhead.appendChild(line);
+
+    var actions = document.createElement('span'); actions.className = 'subhead-actions';
+    var renameBtn = document.createElement('button');
+    renameBtn.type = 'button'; renameBtn.className = 'subhead-btn subhead-rename';
+    renameBtn.title = 'إعادة تسمية القسم'; renameBtn.setAttribute('aria-label', 'إعادة تسمية القسم');
+    renameBtn.textContent = '✏️'; renameBtn.dataset.title = entry.title;
+    renameBtn.addEventListener('click', function(){ renameSection(entry.id, renameBtn.dataset.title); });
+    var delBtn = document.createElement('button');
+    delBtn.type = 'button'; delBtn.className = 'subhead-btn subhead-del-section';
+    delBtn.title = 'حذف القسم'; delBtn.setAttribute('aria-label', 'حذف القسم');
+    delBtn.textContent = '🗑️';
+    delBtn.addEventListener('click', function(){ deleteSection(entry.id); });
+    actions.appendChild(renameBtn); actions.appendChild(delBtn);
+
+    subhead.appendChild(n); subhead.appendChild(h2); subhead.appendChild(line); subhead.appendChild(actions);
     jamiahPanel.insertBefore(subhead, jamiahLegend);
 
     if (jamiahSubnav){
       var a = document.createElement('a');
       a.href = '#' + entry.id;
       a.textContent = entry.title;
+      a.dataset.customSectionId = entry.id;
       a.addEventListener('click', function(ev){ ev.preventDefault(); scrollToEl(subhead); });
       jamiahSubnav.appendChild(a);
     }
@@ -1844,7 +1931,19 @@
   }
 
   function renderAllSections(entries){
-    entries.slice().sort(function(a,b){ return (a.addedAt||0) - (b.addedAt||0); }).forEach(renderSection);
+    var currentIds = {};
+    entries.forEach(function(e){ currentIds[e.id] = true; });
+
+    // a section deleted elsewhere (another device/tab) needs removing here too, not just skipped
+    Array.prototype.slice.call(document.querySelectorAll('#panel-jamiah .subhead[data-custom-section-id]')).forEach(function(el){
+      if (!currentIds[el.dataset.customSectionId]) removeSectionDom(el.dataset.customSectionId);
+    });
+
+    entries.slice().sort(function(a,b){ return (a.addedAt||0) - (b.addedAt||0); }).forEach(function(e){
+      if (document.getElementById(e.id)) applyTitleUpdate(e.id, e.title); // may have been renamed elsewhere
+      else renderSection(e);
+    });
+
     renderAll(lastDuas); // some duas may have been waiting on a section that just appeared
   }
 

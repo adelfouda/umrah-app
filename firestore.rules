@@ -23,7 +23,11 @@ service cloud.firestore {
                     && request.resource.data.title.size() <= 120
                     && request.resource.data.addedAt is number;
       allow delete: if true;
-      allow update: if false;
+      // إعادة تسمية القسم فقط: العنوان يتغيّر، ووقت الإنشاء لا يتغيّر
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title'])
+                    && request.resource.data.title is string
+                    && request.resource.data.title.size() > 0
+                    && request.resource.data.title.size() <= 120;
     }
     // العدّادات المشتركة
     match /shared/counters {
