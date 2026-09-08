@@ -1599,11 +1599,14 @@
       }, function(err){ console.error(err); });
     },
     setBuiltinTitle: function(id, title){
-      var patch = {}; patch['overrides.' + id] = title;
+      // a dotted key ('overrides.'+id) inside set()+merge is NOT a nested-field path — Firestore
+      // would store it as one literal field named "overrides.sec-abna", which the security rule's
+      // keys().hasOnly(['overrides','hidden']) then rejects. A real nested object merges correctly.
+      var patch = { overrides: {} }; patch.overrides[id] = title;
       builtinRef.set(patch, { merge: true }).catch(function(err){ console.error(err); status('off', 'تعذّر الحفظ'); });
     },
     setBuiltinHidden: function(id, hidden){
-      var patch = {}; patch['hidden.' + id] = hidden;
+      var patch = { hidden: {} }; patch.hidden[id] = hidden;
       builtinRef.set(patch, { merge: true }).catch(function(err){ console.error(err); status('off', 'تعذّر الحفظ'); });
     },
     onCounters: function(cb){
